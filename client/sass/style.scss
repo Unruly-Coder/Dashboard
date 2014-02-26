@@ -1,0 +1,126 @@
+@import 'compass';
+@import '_colors.scss';
+@import '_buttons.scss';
+@import '_icons.scss';
+@import '_headers.scss';
+
+body {
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
+  font-size: 14px;
+  line-height: 20px;
+  color: $main-font-color;
+  background: url('../images/backgrounds/abstract.jpg');
+  background-size: 100%;
+  margin: 0;
+}
+
+.config {
+  position: absolute;
+  right: 10px;
+  top: 0px;
+}
+
+.dashboard {
+  position: fixed;
+  width: 100%;
+}
+
+.gridster {
+  li {
+    position: relative;
+
+    &.ng-enter {
+      -webkit-animation: bounceIn 0.5s;
+      -moz-animation: bounceIn 0.5s;
+      -ms-animation: bounceIn 0.5s;
+      animation: bounceIn 0.5s;
+    }
+
+    &.ng-leave {
+      -webkit-animation: bounceOut 0.8s;
+      -moz-animation: bounceOut 0.8s;
+      -ms-animation: bounceOut 0.8s;
+      animation: bounceOut 0.8s;
+    }
+
+    .icon-close {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      cursor: pointer;
+      color: #000;
+    }
+  }
+}
+
+.pull-left {
+  float: left
+}
+
+.pull-right {
+  float: right;
+}
+
+.aside {
+  z-index: 20;
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 320px;
+  background: #000;
+  padding: 0 20px;
+  @include translateX(100%);
+  @include transition(all 0.36s ease);
+
+  &.active {
+    @include translateX(0%);
+  }
+
+  header {
+    height: 42px;
+    padding: 40px 0 30px 0;
+
+    .btn {
+      margin-right: 20px;
+    }
+  }
+
+  h2 {
+    margin: 0;
+    padding: 5px;
+  }
+
+  p {
+    text-transform: uppercase;
+    color: #555;
+  }
+
+  ul {
+    padding: 0;
+  }
+
+  li {
+
+    list-style: none;
+    padding: 10px 0;
+    cursor: pointer;
+
+    &:before {
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+
+    &:hover {
+      color: hotpink;
+      background-color: #111122;
+    }
+
+    &.clicked {
+      -webkit-animation: bounceIn 0.5s;
+      -moz-animation: bounceIn 0.5s;
+      -ms-animation: bounceIn 0.5s;
+      animation: bounceIn 0.5s;
+    }
+  }
+}

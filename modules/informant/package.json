@@ -1,0 +1,9 @@
+{
+    "name": "informant",
+    "version": "0.0.1",
+    "main": "index.js",
+    "private": true,
+    "plugin": {
+        "consumes": ["data", "websocket"]
+    }
+}

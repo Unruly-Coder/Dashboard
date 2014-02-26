@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html data-ng-app="app">
+<head>
+    <title>Making Dashboard</title>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+    <link href='/stylesheets/external.css' rel='stylesheet' type='text/css'>
+    <link href='/stylesheets/style.css' rel='stylesheet' type='text/css'>
+</head>
+<body ng-controller="AppCtrl">
+    <div ng-controller="DashboardCtrl" ng-include="'/views/dashboard.html'" class="dashboard"></div>
+    <a href="#/config" class="btn btn-settings icon-cog config"></a>
+    <aside class="aside"  ng-include="'/views/settings.html'" ng-controller="ConfigurationCtrl" ng-class="{active: configuration == true}" ></aside>
+
+    <script type="text/javascript" src="javascripts/app.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular-animate.min.js"></script>
+
+
+</body>
+</html>
