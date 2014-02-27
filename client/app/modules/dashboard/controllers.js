@@ -1,10 +1,17 @@
 angular.module('dashboard',[])
-    .controller('DashboardCtrl', ['$scope', 'widgetService', function($scope, widgetService) {
-        $scope.dashboard = {
-            widgets : widgetService.widgetInUse
-        }
+    .controller('DashboardCtrl', ['$scope', 'widgetManager', function($scope, widgetManager) {
+
+
+        $scope.dashboard =  widgetManager.getAllWidgets();
+
         $scope.remove = function(index) {
             console.log(index);
-            $scope.dashboard.widgets.splice(index, 1);
+            widgetManager.removeWidget(index);
         }
+
+        $scope.serialize = function(data) {
+            widgetManager.updateWidgetsPosition(data);
+        }
+
+        widgetManager.loadAllWidgets();
     }]);

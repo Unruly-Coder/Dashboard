@@ -6,24 +6,33 @@ angular.module('dashboard').directive('gridster', [
             transclude: true,
             replace: true,
             scope: {
+                serializeChanged: '&'
             },
             controller: function ($scope) {
-                var gr = null;
+                var gr;
                 return {
                     init: function (elem, options) {
-                        var ul = $(elem);
-                        gr = ul.gridster(angular.extend({
+
+                        gr = $(elem).gridster(angular.extend({
                             widget_selector: 'gridster-item',
-                            widget_base_dimensions: [140, 140]
+                            widget_base_dimensions: [140, 140],
+                            draggable: {
+                                stop: function() {
+                                    $scope.serializeChanged({ data: gr.serialize()});
+                                }
+                            }
                         }, options)).data('gridster');
+
                     },
 
                     addItem: function (elm, options)  {
-                        gr.add_widget(elm, options.sizex, options.sizey);
+                        gr.add_widget(elm, options.sizex, options.sizey, options.col, options.row);
+                        $scope.serializeChanged({ data: gr.serialize()});
                     },
 
                     removeItem: function (elm, index) {
                         gr.remove_widget(elm, true);
+                        $scope.serializeChanged({ data: gr.serialize()});
                     }
                 };
             },

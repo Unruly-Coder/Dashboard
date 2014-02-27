@@ -2,6 +2,7 @@
 .sass-cache/
 .idea/
 node_modules/
-logs/*
 client/public/javascripts/*
 client/public/stylesheets/*.css
+logs/*.txt
+!.gitignore

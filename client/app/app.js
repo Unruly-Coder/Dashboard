@@ -10,11 +10,11 @@ angular.module('app', ['dashboard', 'ngAnimate'])
            }
         });
     }])
-    .controller('ConfigurationCtrl', ['$scope', 'widgetService', function($scope, widgetService) {
+    .controller('ConfigurationCtrl', ['$scope', 'widgetService', 'widgetManager', function($scope, widgetService, widgetManager) {
         var widgetList = widgetService.getWidgetList();
 
         $scope.widgets = widgetList;
         $scope.addWidget = function(index) {
-            widgetService.addWidget(index);
+            widgetManager.addWidget(widgetList[index]);
         }
     }]);

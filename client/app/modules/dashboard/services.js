@@ -4,24 +4,79 @@ angular.module('dashboard')
         var widgetList = [];
 
         return {
-            register: function(chanel, widget) {
-                widget.data = 'test';
+            register: function(channel, widget) {
+                widget.channel = channel;
                 widgetList.push(widget);
             },
             $get: function() {
 
-                widgetInUse = [];
+                widgetsInUse = [];
 
                 return {
                     getWidgetList: function() {
                         return widgetList;
-                    },
-                    addWidget: function(index) {
-                        widgetInUse.push(angular.copy(widgetList[index]))
-                    },
-                    widgetInUse: widgetInUse
-
+                    }
                 }
             }
         }
+    })
+    .factory('widgetManager', function() {
+
+        var _widgetsInUse = [];
+
+        function _load(widget){
+
+        }
+
+        function _saveAllWidgets(){
+            localStorage.widgets = angular.toJson(_widgetsInUse);
+        }
+
+        var widgetManager = {
+
+            loadAllWidgets: function() {
+                var storage = angular.fromJson(localStorage.widgets);
+
+                if(storage === undefined) {
+                    return;
+                }
+
+                _widgetsInUse.length = 0;
+                angular.forEach(storage, function(value) {
+                    _widgetsInUse.push(value);
+                }, storage);
+
+                //_widgetsInUse = storage;
+            },
+
+            getAllWidgets: function() {
+                return _widgetsInUse;
+            },
+
+            updateWidgetsPosition: function(data) {
+                angular.forEach(data, function(value, key) {
+                    this[key].col = value.col;
+                    this[key].row = value.row;
+                }, _widgetsInUse);
+
+                _saveAllWidgets();
+            },
+
+            addWidget: function(widget) {
+                var widget = angular.copy(widget);
+
+                widget.data = 'data from socket.io - use _load method to bind ';
+                _widgetsInUse.push(widget);
+                _saveAllWidgets();
+            },
+
+            removeWidget: function(index) {
+                _widgetsInUse.splice(index, 1);
+                _saveAllWidgets();
+            }
+        };
+
+        return widgetManager;
+
+
     });
