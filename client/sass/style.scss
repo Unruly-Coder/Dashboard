@@ -12,6 +12,13 @@ body {
   background: url('../images/backgrounds/abstract.jpg');
   background-size: 100%;
   margin: 0;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .config {
@@ -37,10 +44,10 @@ body {
     }
 
     &.ng-leave {
-      -webkit-animation: bounceOut 0.8s;
-      -moz-animation: bounceOut 0.8s;
-      -ms-animation: bounceOut 0.8s;
-      animation: bounceOut 0.8s;
+      -webkit-animation: bounceOut 0.5s;
+      -moz-animation: bounceOut 0.5s;
+      -ms-animation: bounceOut 0.5s;
+      animation: bounceOut 0.5s;
     }
 
     .icon-close {

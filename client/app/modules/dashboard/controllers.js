@@ -10,5 +10,10 @@ angular.module('dashboard',[])
 
         $scope.serialize = function(data) {
             widgetManager.updateWidgetsPosition(data);
+            $scope.$digest();
         }
+
+        $scope.$watch('dashboard', function(){
+           widgetManager.saveAllWidgets();
+        }, true);
     }]);

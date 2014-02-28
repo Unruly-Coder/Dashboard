@@ -30,7 +30,9 @@ angular.module('dashboard').directive('gridster', [
                     },
 
                     removeItem: function (elm, index) {
-                        gr.remove_widget(elm, true);
+                        gr.disable().remove_widget(elm, true);
+                        setTimeout(gr.enable.bind(gr), 500);
+
                     }
                 };
             },
@@ -51,11 +53,19 @@ angular.module('dashboard').directive('gridsterItem', [
             template: '<li><a class="icon-close" ng-click="remove()"></a><div>{{options.name}}</div></li>',
             replace: true,
             scope: {
+
                 options: '=',
                 removeTile: '&'
             },
             link: function (scope, elm, attrs, controller) {
+
+                scope.removed = false;
                 scope.remove = function() {
+                    //protect doubleclick
+                    if(scope.removed) {
+                        return
+                    }
+                    scope.removed = true;
                     controller.removeItem(elm);
                 }
 

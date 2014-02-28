@@ -28,11 +28,11 @@ angular.module('dashboard')
 
         }
 
-        function _saveAllWidgets(){
-            localStorage.widgets = angular.toJson(_widgetsInUse);
-        }
-
         var widgetManager = {
+
+            saveAllWidgets: function() {
+                localStorage.widgets = angular.toJson(_widgetsInUse);
+            },
 
             loadAllWidgets: function() {
                 var storage = angular.fromJson(localStorage.widgets);
@@ -56,8 +56,6 @@ angular.module('dashboard')
                     this[key].col = value.col;
                     this[key].row = value.row;
                 }, _widgetsInUse);
-
-                _saveAllWidgets();
             },
 
             addWidget: function(widget) {
@@ -65,12 +63,10 @@ angular.module('dashboard')
 
                 widget.data = 'data from socket.io - use _load method to bind ';
                 _widgetsInUse.push(widget);
-                _saveAllWidgets();
             },
 
             removeWidget: function(index) {
                 _widgetsInUse.splice(index, 1);
-                _saveAllWidgets();
             }
         };
 
