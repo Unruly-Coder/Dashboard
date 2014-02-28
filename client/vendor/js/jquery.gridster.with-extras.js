@@ -955,7 +955,7 @@
                 'data-row': pos.row,
                 'data-sizex' : size_x,
                 'data-sizey' : size_y
-        }).addClass('gs-w').appendTo(this.$el);
+        }).addClass('gs-w');
          //   }).addClass('gs-w').appendTo(this.$el).hide();
 
         this.$widgets = this.$widgets.add($w);

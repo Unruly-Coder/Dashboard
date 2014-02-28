@@ -6,11 +6,11 @@ angular.module('dashboard')
         return {
             register: function(channel, widget) {
                 widget.channel = channel;
+                widget.col = 0;
+                widget.row = 0;
                 widgetList.push(widget);
             },
             $get: function() {
-
-                widgetsInUse = [];
 
                 return {
                     getWidgetList: function() {
@@ -43,10 +43,8 @@ angular.module('dashboard')
 
                 _widgetsInUse.length = 0;
                 angular.forEach(storage, function(value) {
-                    _widgetsInUse.push(value);
-                }, storage);
-
-                //_widgetsInUse = storage;
+                    this.addWidget(value);
+                }, widgetManager);
             },
 
             getAllWidgets: function() {

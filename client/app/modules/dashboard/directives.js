@@ -27,12 +27,10 @@ angular.module('dashboard').directive('gridster', [
 
                     addItem: function (elm, options)  {
                         gr.add_widget(elm, options.sizex, options.sizey, options.col, options.row);
-                        $scope.serializeChanged({ data: gr.serialize()});
                     },
 
                     removeItem: function (elm, index) {
                         gr.remove_widget(elm, true);
-                        $scope.serializeChanged({ data: gr.serialize()});
                     }
                 };
             },
