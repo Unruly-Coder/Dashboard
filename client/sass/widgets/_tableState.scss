@@ -8,10 +8,13 @@
   .footer {
     position: absolute;
     bottom: 0px;
+    color: #9f9f9f;
+//    font-weight: bold;
   }
 
   .state {
     margin-top: 20px;
+    margin-bottom: 0px;
     text-align: center;
     position: relative;
 
@@ -20,20 +23,20 @@
       display: block;
       border-radius: 50%;
       background-color: green;
-      width: 18px;
-      height: 18px;
+      width: 15px;
+      height: 15px;
       position: absolute;
       left: 70px;
-      top: 2px;
+      top: 4px;
     }
 
     &.occupied:before {
-      background-color: red;
+      background-color: #ef6969;
     }
   }
 
   .small-points {
-    font-size:56px;
+    font-size:72px;
     text-align: center;
   }
 
@@ -41,19 +44,19 @@
     margin-top: 10px;
     width: 120px;
     height: 60px;
-    background-color: #bebebe;
+    background-color: #d3d3d3;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
-    font-size: 20px;
+    font-size: 24px;
 
     .pull-left {
-      border-right: 1px solid #000;
+      border-right: 1px solid #b8b8b8;
     }
     .pull-left, .pull-right {
       width: 50%;
       text-align: center;
-      margin: 16px 0;
+      margin: 13px 0;
       @include box-sizing('border-box');
     }
   }
