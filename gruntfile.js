@@ -6,12 +6,16 @@ module.exports = function(grunt) {
                 tasks: ['concat:js']
             },
             scss2css: {
-                files: ['client/sass/*.scss'],
+                files: ['client/sass/**/*.scss'],
                 tasks: ['compass']
             },
             externalcss: {
                 files: ['client/vendor/css/**/*.css'],
                 tasks: ['concat:css']
+            },
+            views: {
+                files: ['client/app/widgets/**/*.html'],
+                tasks: ['copy:views']
             }
         },
         concat: {
@@ -40,6 +44,15 @@ module.exports = function(grunt) {
                     outputStyle: 'compressed'
                 }
             }
+        },
+        copy: {
+            views: {
+                expand: true,
+                cwd: 'client/app/widgets/',
+                src: ['**/*.html'],
+                dest: 'client/public/views/widgets/',
+                flatten: true
+            }
         }
 
     });
@@ -47,7 +60,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-compass');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-copy');
 
     grunt.registerTask('development', ['watch']);
-    grunt.registerTask('build', ['concat', 'compass']);
+    grunt.registerTask('build', ['concat', 'compass', 'copy']);
 }

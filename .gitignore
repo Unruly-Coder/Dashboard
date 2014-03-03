@@ -4,5 +4,6 @@
 node_modules/
 client/public/javascripts/*
 client/public/stylesheets/*.css
+client/public/views/widgets/*
 logs/*.txt
 !.gitignore

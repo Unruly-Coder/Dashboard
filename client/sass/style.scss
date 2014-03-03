@@ -3,11 +3,11 @@
 @import '_buttons.scss';
 @import '_icons.scss';
 @import '_headers.scss';
+@import '_widgets.scss';
 
 body {
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
   font-size: 14px;
-  line-height: 20px;
   color: $main-font-color;
   background: url('../images/backgrounds/abstract.jpg');
   background-size: 100%;
@@ -30,6 +30,7 @@ body {
 .dashboard {
   position: fixed;
   width: 100%;
+  color: #000;
 }
 
 .gridster {
@@ -51,11 +52,18 @@ body {
     }
 
     .icon-close {
+      @include transition(opacity 0.3s);
       position: absolute;
       right: 10px;
       top: 10px;
       cursor: pointer;
       color: #000;
+      z-index: 100;
+      opacity: 0;
+    }
+
+    &:hover .icon-close {
+      opacity: 1;
     }
   }
 }

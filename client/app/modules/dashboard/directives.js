@@ -50,22 +50,14 @@ angular.module('dashboard').directive('gridsterItem', [
         return {
             restrict: 'E',
             require: '^gridster',
-            template: '<li><a class="icon-close" ng-click="remove()"></a><div>{{options.name}}</div></li>',
+            template: '<li><a class="icon-close" ng-click="remove()"></a><div ng-include="options.template"></div></li>',
             replace: true,
             scope: {
-
                 options: '=',
                 removeTile: '&'
             },
             link: function (scope, elm, attrs, controller) {
-
-                scope.removed = false;
                 scope.remove = function() {
-                    //protect doubleclick
-                    if(scope.removed) {
-                        return
-                    }
-                    scope.removed = true;
                     controller.removeItem(elm);
                 }
 

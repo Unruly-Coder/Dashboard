@@ -8,6 +8,7 @@ angular.module('dashboard')
                 widget.channel = channel;
                 widget.col = 0;
                 widget.row = 0;
+                widget.template = 'views/widgets/' + widget.template;
                 widgetList.push(widget);
             },
             $get: function() {

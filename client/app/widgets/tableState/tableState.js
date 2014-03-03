@@ -5,6 +5,6 @@ angular.module('dashboard')
             sizex: 2,
             sizey: 2,
             color: '#ffffff',
-            template: 'something'
+            template: 'tableState.html'
         })
     });
