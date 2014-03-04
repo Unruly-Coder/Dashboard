@@ -1,4 +1,4 @@
-module.exports = function status(options, imports, register) {
+module.exports = function setup(options, imports, register) {
 
     var webserver = imports['webserver'];
 

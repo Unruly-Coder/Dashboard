@@ -5,6 +5,6 @@
     "private": true,
     "plugin": {
         "provides": ["foosballManager"],
-        "consumes": ["serialport"]
+        "consumes": ["serialport", "data"]
     }
 }

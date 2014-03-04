@@ -4,6 +4,7 @@ module.exports = function setup(options, imports, register) {
     "use strict"
 
     var serialport = imports['serialport'],
+        data = imports['data'],
         emitter = new Emitter,
 
         playingTimeout,
@@ -18,6 +19,44 @@ module.exports = function setup(options, imports, register) {
                 bigPoints: 0
             }
         };
+
+    function init() {
+
+        emitter.on('scoreChanged', function(gameState) {
+            data.set('foosballState', {
+                isOccupied: isOccupied,
+                game: gameState
+            });
+        }).emit('scoreChanged', gameState);
+
+        serialport.on('data', function(data) {
+            var tmpTeam;
+
+            switch(data) {
+
+                case "reset":
+                    resetScore();
+                    break;
+
+                case "point-1":
+                    tmpTeam = ((gameState.teamOne.bigPoints + gameState.teamTwo.bigPoints) % 2 === 0 ) ? gameState.teamOne : gameState.teamTwo;
+                    addPoint(tmpTeam);
+                    break;
+
+                case "point-2":
+                    tmpTeam = ((gameState.teamOne.bigPoints + gameState.teamTwo.bigPoints) % 2 === 0 ) ? gameState.teamTwo : gameState.teamOne;
+                    addPoint(tmpTeam);
+                    break;
+            }
+
+            if(!isOccupied) {
+                isOccupied = true;
+                emitter.emit('tableOccupied');
+            }
+
+            prolongPlaying();
+        });
+    }
 
     function resetScore() {
         gameState.teamOne.smallPoints = 0;
@@ -42,6 +81,7 @@ module.exports = function setup(options, imports, register) {
 
     function exemptTable() {
         isOccupied = false;
+        emitter.emit('tableExempt');
     }
 
     function prolongPlaying() {
@@ -49,33 +89,7 @@ module.exports = function setup(options, imports, register) {
             playingTimeout = setTimeout(exemptTable, 60000);
     }
 
-    serialport.on('data', function(data) {
-        var tmpTeam;
-
-        switch(data) {
-
-            case "reset":
-                resetScore();
-                break;
-
-            case "point-1":
-                tmpTeam = ((gameState.teamOne.bigPoints + gameState.teamTwo.bigPoints) % 2 === 0 ) ? gameState.teamOne : gameState.teamTwo;
-                addPoint(tmpTeam);
-                break;
-
-            case "point-2":
-                tmpTeam = ((gameState.teamOne.bigPoints + gameState.teamTwo.bigPoints) % 2 === 0 ) ? gameState.teamTwo : gameState.teamOne;
-                addPoint(tmpTeam);
-                break;
-        }
-
-        if(!isOccupied) {
-            isOccupied = true;
-            emitter.emit('foosballManager::tableOccupied');
-        }
-
-        prolongPlaying();
-    });
+    init();
 
     register(null, {
         foosballManager : {

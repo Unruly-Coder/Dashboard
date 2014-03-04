@@ -11,8 +11,7 @@ module.exports = function setup(options, imports, register) {
             engine: 'jade',
             port: 3000,
             favicon: ''
-	    }),
-        server;
+	    });
 
     app.set("views", opts.views);
     app.set("view options", { layout: false });

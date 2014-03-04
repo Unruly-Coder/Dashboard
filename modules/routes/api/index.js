@@ -1,4 +1,4 @@
-module.exports = function status(options, imports, register) {
+module.exports = function setup(options, imports, register) {
 
     var webserver = imports['webserver'],
         data = imports['data'];
@@ -10,33 +10,15 @@ module.exports = function status(options, imports, register) {
            var tmpData = data.get(request.params.id);
 
             if(tmpData) {
-                response.json({
-                    success: true,
-                    data: tmpData
-                })
+                response.json(tmpData)
             } else {
-                response.json({
-                    success: false,
-                    error: 'undefined variable'
-                })
+                response.status(404).send('Not found');
             }
 
         },
 
         getAll: function(request, response) {
-            var tmpData = data.get();
-
-            if(tmpData) {
-                response.json({
-                    success: true,
-                    data: tmpData
-                })
-            } else {
-                response.json({
-                    success: false,
-                    error: 'no data'
-                })
-            }
+            response.json(data.get());
         }
     }
 
