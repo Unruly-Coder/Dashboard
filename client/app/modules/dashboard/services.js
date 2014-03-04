@@ -20,7 +20,7 @@ angular.module('dashboard')
             }
         }
     })
-    .factory('widgetManager', ['$http', function($http) {
+    .factory('widgetManager', ['$http', 'socket', function($http, socket) {
 
         var _widgetsInUse = [];
 
@@ -28,6 +28,10 @@ angular.module('dashboard')
             var promise = $http.get('/api/' + widget.channel)
                 .then(function(response){
                    widget.data = response.data;
+
+                   socket.on(widget.channel, function(data) {
+                       widget.data = data;
+                   })
                 }, function(response) {
                     console.log('smth-wrong');
                 });

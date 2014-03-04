@@ -3,7 +3,7 @@ module.exports = function setup(options, imports, register) {
         data = imports['data'];
 
     data.on('newData', function(key, value) {
-        websocket.emit(key, value);
+        websocket.sockets.emit(key, value);
     });
 
     register(null,{});

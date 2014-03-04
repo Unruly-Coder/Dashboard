@@ -4,17 +4,17 @@
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
-  box-sizing: border-box;
   display: inline-block;
   width: 42px;
   height: 42px;
   padding: 0 7px;
   font-size: 24px;
-  line-height: 40px !important;
+  line-height: 38px !important;
   border-color: #fff;
   text-decoration: none;
   color: #fff;
   cursor: pointer;
+  @include box-sizing('border-box');
 }
 
 .btn-settings {

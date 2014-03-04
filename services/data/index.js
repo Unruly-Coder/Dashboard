@@ -22,10 +22,11 @@ module.exports = function setup(options, imports, register) {
         return buffer;
     }
 
+
     register(null, {
         data : { set : set,
                  get : get,
-                 on  : emitter.on
+                 on  : emitter.on.bind(emitter)
         }
     });
 }

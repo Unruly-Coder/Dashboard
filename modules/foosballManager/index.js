@@ -93,7 +93,7 @@ module.exports = function setup(options, imports, register) {
 
     register(null, {
         foosballManager : {
-            on : emitter.on
+            on : emitter.on.bind(emitter)
         }
     });
 }
