@@ -12,7 +12,6 @@ angular.module('dashboard')
                 widgetList.push(widget);
             },
             $get: function() {
-
                 return {
                     getWidgetList: function() {
                         return widgetList;
@@ -21,12 +20,18 @@ angular.module('dashboard')
             }
         }
     })
-    .factory('widgetManager', function() {
+    .factory('widgetManager', ['$http', function($http) {
 
         var _widgetsInUse = [];
 
         function _load(widget){
-
+            var promise = $http.get('/api/' + widget.channel)
+                .then(function(response){
+                   widget.data = response.data;
+                }, function(response) {
+                    console.log('smth-wrong');
+                });
+            return promise;
         }
 
         var widgetManager = {
@@ -62,8 +67,10 @@ angular.module('dashboard')
             addWidget: function(widget) {
                 var widget = angular.copy(widget);
 
-                widget.data = 'data from socket.io - use _load method to bind ';
-                _widgetsInUse.push(widget);
+                _load(widget)
+                .then(function(){
+                        _widgetsInUse.push(widget)
+                    });
             },
 
             removeWidget: function(index) {
@@ -74,4 +81,4 @@ angular.module('dashboard')
         return widgetManager;
 
 
-    });
+    }]);

@@ -1,6 +1,6 @@
 angular.module('dashboard')
     .config(function(widgetServiceProvider) {
-        widgetServiceProvider.register('foosball-table', {
+        widgetServiceProvider.register('foosballState', {
             name: 'foosball table state',
             sizex: 2,
             sizey: 2,
