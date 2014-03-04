@@ -22,15 +22,13 @@ module.exports = function setup(options, imports, register) {
 
     function init() {
 
-        emitter.on('scoreChanged', function(gameState) {
-            data.set('foosballState', {
-                isOccupied: isOccupied,
-                game: gameState
-            });
-        }).emit('scoreChanged', gameState);
+        emitter.on('scoreChanged', addToBuffer)
+               .on('tableExempt', addToBuffer)
+               .on('tableOccupied', addToBuffer)
+               .emit('scoreChanged', gameState);
 
         serialport.on('data', function(data) {
-            var tmpTeam;
+            var tmpTeam, data = data.trim();
 
             switch(data) {
 
@@ -38,12 +36,12 @@ module.exports = function setup(options, imports, register) {
                     resetScore();
                     break;
 
-                case "point-1":
+                case "team1":
                     tmpTeam = ((gameState.teamOne.bigPoints + gameState.teamTwo.bigPoints) % 2 === 0 ) ? gameState.teamOne : gameState.teamTwo;
                     addPoint(tmpTeam);
                     break;
 
-                case "point-2":
+                case "team2":
                     tmpTeam = ((gameState.teamOne.bigPoints + gameState.teamTwo.bigPoints) % 2 === 0 ) ? gameState.teamTwo : gameState.teamOne;
                     addPoint(tmpTeam);
                     break;
@@ -55,6 +53,13 @@ module.exports = function setup(options, imports, register) {
             }
 
             prolongPlaying();
+        });
+    }
+
+    function addToBuffer(gameState) {
+        data.set('foosballState', {
+            isOccupied: isOccupied,
+            game: gameState
         });
     }
 
@@ -81,6 +86,7 @@ module.exports = function setup(options, imports, register) {
 
     function exemptTable() {
         isOccupied = false;
+        resetScore();
         emitter.emit('tableExempt');
     }
 
