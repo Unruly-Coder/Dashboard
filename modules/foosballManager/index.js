@@ -68,7 +68,6 @@ module.exports = function setup(options, imports, register) {
         gameState.teamOne.bigPoints = 0;
         gameState.teamTwo.smallPoints = 0;
         gameState.teamTwo.bigPoints = 0;
-
         emitter.emit('scoreChanged', gameState);
     }
 
@@ -78,9 +77,12 @@ module.exports = function setup(options, imports, register) {
                 emitter.emit('endMatch', gameState);
                 resetScore();
             } else {
-               team.smallPoints = 0;
+               gameState.teamOne.smallPoints = 0;
+               gameState.teamTwo.smallPoints = 0;
                emitter.emit('scoreChanged', gameState);
             }
+        } else {
+            emitter.emit('scoreChanged', gameState);
         }
      }
 
