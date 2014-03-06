@@ -22,10 +22,10 @@ module.exports = function setup(options, imports, register) {
 
     function init() {
 
-        emitter.on('scoreChanged', addToBuffer)
-               .on('tableExempt', addToBuffer)
-               .on('tableOccupied', addToBuffer)
-               .emit('scoreChanged', gameState);
+        emitter.on('scoreChanged', addStateToBuffer)
+               .on('tableExempt', addStateToBuffer)
+               .on('tableOccupied', addStateToBuffer)
+               .emit('scoreChanged');
 
         serialport.on('data', function(data) {
             var tmpTeam, data = data.trim();
@@ -56,7 +56,7 @@ module.exports = function setup(options, imports, register) {
         });
     }
 
-    function addToBuffer(gameState) {
+    function addStateToBuffer() {
         data.set('foosballState', {
             isOccupied: isOccupied,
             game: gameState
