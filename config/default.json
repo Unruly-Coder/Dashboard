@@ -1,0 +1,54 @@
+{
+    "services/eventbus":{
+
+    },
+    "services/websocket":{
+
+    },
+    "services/data":{
+
+    },
+    "services/database":{
+        "path":"mongodb://localhost/dashboard"
+    },
+    "services/serialport":{
+        "path":"/dev/ttyACM0",
+        "baudRate":9600,
+        "parser":"readline"
+    },
+    "services/webserver":{
+        "views":"./views",
+        "port":3000,
+        "favicon":"./client/public/favicon.ico",
+        "statics":[
+            "./client/public"
+        ]
+    },
+    "services/logger":{
+        "transports":[
+            {
+                "type":"console",
+                "colorize":true
+            },
+            {
+                "type":"file",
+                "filename":"./logs/log.txt"
+            }
+        ]
+    },
+    "modules/foosballManager":{
+
+    },
+    "modules/foosballStats":{
+
+    },
+    "modules/informant":{
+
+    },
+    "modules/routes/api":{
+
+    },
+    "modules/routes/page":{
+        "path":"./client/public/views/index.html"
+    }
+}

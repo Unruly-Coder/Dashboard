@@ -8,7 +8,14 @@ module.exports = function setup(options, imports, register) {
 
     options.parser = serialport.parsers.readline("\n");
 
-   // var serial =  new serialport.SerialPort(options.path, options);
-    var serial = { on : function() { }};
+
+        var serial,
+            polyfill = function(error) {
+                console.log(error);
+                serial = { on : function() { }};
+            };
+
+        serial =  new serialport.SerialPort(options.path, options, true, polyfill);
+
     register(null, { 'serialport': serial });
 }
