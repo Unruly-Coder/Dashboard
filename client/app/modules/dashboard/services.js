@@ -24,17 +24,56 @@ angular.module('dashboard')
 
         var _widgetsInUse = [];
 
-        function _load(widget){
-            var promise = $http.get('/api/' + widget.channel)
+        function _loadData(url, widget) {
+            var promise = $http.get(url)
                 .then(function(response){
-                   widget.data = response.data;
-
-                   socket.on(widget.channel, function(data) {
-                       widget.data = data;
-                   });
-                }, function(response) {
-                    console.log('smth-wrong');
+                    widget.data = response.data;
+                }, function() {
+                    console.error('can not connect with' + url );
                 });
+
+            return promise;
+        }
+
+        function _load(widget){
+            var promise;
+
+            switch(typeof widget.channel) {
+                case 'string':
+                    promise = _loadData('/api/' + widget.channel, widget)
+                    .then(function() {
+                        var fn = function(data) {
+                            widget.data = data;
+                        };
+
+                        socket.on(widget.channel, fn);
+
+                        widget.unbindData = function() {
+                            socket.off(this.channel, fn);
+                        };
+
+                     });
+                    break;
+                case 'object':
+                    if(!widget.channel.data) {
+                        console.error('"data" attribute missing');
+                        return;
+                    }
+                    promise = _loadData(widget.channel.data, widget)
+                    .then(function() {
+                        var id = setInterval(function() {
+                            _loadData(widget.channel.data, widget);
+                        }, widget.channel.interval);
+
+                        widget.unbindData = function() {
+                            clearInterval(id);
+                        };
+                    });
+                    break;
+                default:
+                    widget.unbindData = function(){};
+                    break;
+            }
             return promise;
         }
 
@@ -71,14 +110,18 @@ angular.module('dashboard')
             addWidget: function(widget) {
                 widget = angular.copy(widget);
 
-                _load(widget)
-                .then(function(){
+                if(widget.channel) {
+                    _load(widget).then(function(){
                         _widgetsInUse.push(widget);
                     });
+                } else {
+                    _widgetsInUse.push(widget);
+                }
+
             },
 
             removeWidget: function(index) {
-                _widgetsInUse.splice(index, 1);
+                _widgetsInUse.splice(index, 1)[0].unbindData();
             }
         };
 

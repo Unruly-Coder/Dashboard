@@ -9,6 +9,9 @@ angular.module('app').factory('socket', ['$rootScope', function($rootScope) {
                 });
             });
         },
+        off: function  (eventName, callback) {
+            socket.removeListener(eventName, callback);
+        },
         emit: function (eventName, data, callback) {
             socket.emit(eventName, data, function () {
                 var args = arguments;
