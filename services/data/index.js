@@ -1,7 +1,7 @@
 var Emitter = require('events').EventEmitter;
 
 module.exports = function setup(options, imports, register) {
-    var emitter = new Emitter,
+    var emitter = new Emitter(),
         buffer = {};
 
     function set(key, value) {
@@ -29,4 +29,4 @@ module.exports = function setup(options, imports, register) {
                  on  : emitter.on.bind(emitter)
         }
     });
-}
+};

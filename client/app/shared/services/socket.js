@@ -17,7 +17,7 @@ angular.module('app').factory('socket', ['$rootScope', function($rootScope) {
                         callback.apply(socket, args);
                     }
                 });
-            })
+            });
         }
     };
 }]);

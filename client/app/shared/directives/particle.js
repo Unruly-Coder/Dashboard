@@ -17,10 +17,10 @@ angular.module('app').directive('particle', function() {
                     maxVelocity : 3,
                     minGravity : 0,
                     maxGravity : 0,
-                    minWind	   : 0,
-                    maxWind	   : 10,
-                    minSize    : 5,
-                    maxSize    : 15,
+                    minWind	: 0,
+                    maxWind	: 10,
+                    minSize : 5,
+                    maxSize : 15,
                     minSizeStep : -3,
                     maxSizeStep : -3,
                     maxParticleEmit : 1,
@@ -28,13 +28,11 @@ angular.module('app').directive('particle', function() {
                     colors: ['89A4F0']
                 });
 
-            console.log(firstEmitter);
-
             function animate() {
                 context.clearRect(0,0,screenWidth,screenHeight);
                 firstEmitter.render(context);
                 window.requestAnimationFrame(animate);
-            };
+            }
 
             elm[0].width = screenWidth;
             elm[0].height = screenHeight;
@@ -46,8 +44,8 @@ angular.module('app').directive('particle', function() {
             animate();
 
              setInterval(function() {
-             		firstEmitter.emit(-10,screenHeight/2);
+                firstEmitter.emit(-10,screenHeight/2);
              }, 50);
         }
-    }
+    };
 });

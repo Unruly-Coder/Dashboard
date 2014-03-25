@@ -1,11 +1,11 @@
 var Emitter = require('events').EventEmitter;
 
 module.exports = function setup(options, imports, register) {
-    "use strict"
+    "use strict";
 
-    var serialport = imports['serialport'],
-        data = imports['data'],
-        emitter = new Emitter,
+    var serialport = imports.serialport,
+        data = imports.data,
+        emitter = new Emitter(),
 
         playingTimeout,
         isOccupied = false,
@@ -28,7 +28,9 @@ module.exports = function setup(options, imports, register) {
                .emit('scoreChanged');
 
         serialport.on('data', function(data) {
-            var tmpTeam, data = data.trim();
+            var tmpTeam;
+
+            data = data.trim();
 
             switch(data) {
 
@@ -104,4 +106,4 @@ module.exports = function setup(options, imports, register) {
             on : emitter.on.bind(emitter)
         }
     });
-}
+};

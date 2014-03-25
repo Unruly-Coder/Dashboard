@@ -6,12 +6,12 @@ angular.module('dashboard',[])
 
         $scope.remove = function(index) {
             widgetManager.removeWidget(index);
-        }
+        };
 
         $scope.serialize = function(data) {
             widgetManager.updateWidgetsPosition(data);
             $scope.$digest();
-        }
+        };
 
         $scope.$watch('dashboard', function(){
            widgetManager.saveAllWidgets();

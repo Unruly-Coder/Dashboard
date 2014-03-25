@@ -6,5 +6,5 @@ angular.module('dashboard')
             sizey: 2,
             color: '#ffffff',
             template: 'tableState.html'
-        })
+        });
     });

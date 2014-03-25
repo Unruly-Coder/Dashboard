@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 module.exports = function setup(options, imports, register) {
 
-    var logger = imports['logger'],
+    var logger = imports.logger,
         db;
 
     if(!options.path) {
@@ -22,4 +22,4 @@ module.exports = function setup(options, imports, register) {
     });
 
     register(null, { database : db });
-}
+};

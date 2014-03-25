@@ -6,5 +6,5 @@ angular.module('dashboard')
             sizey: 2,
             color: 'hotpink',
             template: ''
-        })
+        });
     });

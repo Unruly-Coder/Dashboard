@@ -18,4 +18,4 @@ module.exports = function setup(options, imports, register) {
         serial =  new serialport.SerialPort(options.path, options, true, polyfill);
 
     register(null, { 'serialport': serial });
-}
+};

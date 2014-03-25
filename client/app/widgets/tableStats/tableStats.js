@@ -5,5 +5,5 @@ angular.module('dashboard')
             sizex: 1,
             sizey: 1,
             template: ''
-        })
+        });
     });

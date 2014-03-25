@@ -16,9 +16,9 @@ angular.module('dashboard')
                     getWidgetList: function() {
                         return widgetList;
                     }
-                }
+                };
             }
-        }
+        };
     })
     .factory('widgetManager', ['$http', 'socket', function($http, socket) {
 
@@ -31,7 +31,7 @@ angular.module('dashboard')
 
                    socket.on(widget.channel, function(data) {
                        widget.data = data;
-                   })
+                   });
                 }, function(response) {
                     console.log('smth-wrong');
                 });
@@ -69,11 +69,11 @@ angular.module('dashboard')
             },
 
             addWidget: function(widget) {
-                var widget = angular.copy(widget);
+                widget = angular.copy(widget);
 
                 _load(widget)
                 .then(function(){
-                        _widgetsInUse.push(widget)
+                        _widgetsInUse.push(widget);
                     });
             },
 

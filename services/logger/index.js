@@ -11,7 +11,7 @@ module.exports = function setup(options, imports, register) {
 
     var transports = options.transports||{};
 
-    for(transport in transports) {
+    for(var transport in transports) {
         var transportOptions = transports[transport];
 
         switch(transportOptions.type){

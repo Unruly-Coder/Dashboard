@@ -1,9 +1,19 @@
 module.exports = function(grunt) {
     grunt.initConfig({
         watch: {
+            all: {
+                files: ['client/public/**/*'],
+                options: {
+                    livereload: true
+                }
+            },
             js: {
                 files: ['client/vendor/js/**/*.js', 'client/app/**/*.js'],
-                tasks: ['concat:js']
+                tasks: ['jshint', 'concat:js']
+            },
+            jsServer: {
+                files: ['modules/**/*.js', 'services/**/*.js'],
+                tasks: ['jshint']
             },
             scss2css: {
                 files: ['client/sass/**/*.scss'],
@@ -17,6 +27,9 @@ module.exports = function(grunt) {
                 files: ['client/app/widgets/**/*.html'],
                 tasks: ['copy:views']
             }
+        },
+        jshint: {
+            all: ['client/app/**/*.js', 'modules/**/*.js', 'services/**/*.js' ]
         },
         concat: {
             js: {
@@ -61,6 +74,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-jshint');
 
     grunt.registerTask('development', ['watch']);
     grunt.registerTask('build', ['concat', 'compass', 'copy']);

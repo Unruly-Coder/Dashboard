@@ -1,6 +1,6 @@
 module.exports = function setup(options, imports, register) {
 
-    var webserver = imports['webserver'];
+    var webserver = imports.webserver;
 
     function staticPage(request, response) {
         response.sendfile(options.path);
@@ -9,4 +9,4 @@ module.exports = function setup(options, imports, register) {
     webserver.app.get('/', staticPage);
 
     register(null, {});
-}
+};

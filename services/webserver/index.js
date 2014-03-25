@@ -5,13 +5,13 @@ var express = require('express'),
 
 module.exports = function setup(options, imports, register) {
 
-	var logger = imports['logger'],
+	var logger = imports.logger,
         app = express(),
         opts = _.defaults(options, {
             engine: 'jade',
             port: 3000,
             favicon: ''
-	    });
+        });
 
     app.set("views", opts.views);
     app.set("view options", { layout: false });

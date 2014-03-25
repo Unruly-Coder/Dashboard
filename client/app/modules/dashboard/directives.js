@@ -59,12 +59,12 @@ angular.module('dashboard').directive('gridsterItem', [
             link: function (scope, elm, attrs, controller) {
                 scope.remove = function() {
                     controller.removeItem(elm);
-                }
+                };
 
                 elm.css('background-color', scope.options.color);
                 elm.bind('destroyTile', function() {
                     scope.removeTile();
-                })
+                });
 
                 controller.addItem(elm, scope.options);
             }
