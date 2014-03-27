@@ -1,5 +1,5 @@
 angular.module('dashboard',[])
-    .controller('DashboardCtrl', ['$scope', 'widgetManager', function($scope, widgetManager) {
+    .controller('DashboardCtrl', ['$scope', 'widgetManager', 'widgetService', function($scope, widgetManager, widgetService) {
 
         function saveDashboardState() {
             localStorage.widgets = angular.toJson($scope.widgets);
@@ -13,7 +13,7 @@ angular.module('dashboard',[])
            }
 
            angular.forEach(storage, function(value) {
-               this.addWidget(value);
+               this.addWidget(widgetService.createWidget(value));
            }, widgetManager);
         }
 

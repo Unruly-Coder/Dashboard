@@ -1,20 +1,86 @@
 angular.module('dashboard')
-    .provider('widgetService', function(){
+    .provider('widgetService', function( ){
 
         var widgetList = [];
 
         return {
-            register: function(channel, widget) {
-                widget.channel = channel;
-                widget.col = 0;
-                widget.row = 0;
-                widget.template = 'views/widgets/' + widget.template;
+            register: function(name, widgetSettings) {
+                var widget = {
+                    name: name,
+                    settings: widgetSettings
+                };
+
+                angular.extend(widget.settings, {
+                    col: 0,
+                    row: 0,
+                    template: 'views/widgets/' + widget.settings.template
+                });
+
                 widgetList.push(widget);
             },
-            $get: function() {
+            $get: function($http, socket) {
+
                 return {
                     getWidgetList: function() {
                         return widgetList;
+                    },
+                    createWidget: function(widgetData) {
+                        var bindReference, url, widget = {};
+
+                        angular.extend(widget, widgetData);
+
+                        widget.getData = function() {
+                           var promise = $http.get(widget.dataBind.source);
+
+                            promise.then(function(response){
+                                widget.data = response.data;
+                            }, function() {
+                                console.error('can not connect with' + url );
+                            });
+
+                            return promise;
+                        };
+
+                        widget.serialize = function() {
+                            return angular.toJson(this);
+                        };
+
+                        switch(widget.dataBind.type) {
+                            case 'internal':
+
+                                bindReference = {
+                                    channel: widget.dataBind.source.substring(5),
+                                    fn: function(data) {
+                                        widget.data = data;
+                                    }
+                                };
+
+                                socket.on(bindReference.channel, bindReference.fn);
+
+                                widget.unbindData = function() {
+                                    socket.off(bindReference.channel, bindReference.fn);
+                                };
+
+                                break;
+
+                            case 'external':
+
+                                bindReference = setInterval(widget.getData, widget.dataBind.interval);
+
+                                widget.unbindData = function() {
+                                    clearInterval(bindReference);
+                                };
+
+                                break;
+
+                            default:
+                                widget.unbindData = function(){};
+                                break;
+                        }
+
+                        widget.getData();
+
+                        return widget;
                     }
                 };
             }
@@ -24,84 +90,20 @@ angular.module('dashboard')
 
         var _widgetsInUse = [];
 
-        function _loadData(url, widget) {
-            var promise = $http.get(url)
-                .then(function(response){
-                    widget.data = response.data;
-                }, function() {
-                    console.error('can not connect with' + url );
-                });
-
-            return promise;
-        }
-
-        function _load(widget){
-            var promise;
-
-            switch(typeof widget.channel) {
-                case 'string':
-                    promise = _loadData('/api/' + widget.channel, widget)
-                    .then(function() {
-                        var fn = function(data) {
-                            widget.data = data;
-                        };
-
-                        socket.on(widget.channel, fn);
-
-                        widget.unbindData = function() {
-                            socket.off(this.channel, fn);
-                        };
-
-                     });
-                    break;
-                case 'object':
-                    if(!widget.channel.data) {
-                        console.error('"data" attribute missing');
-                        return;
-                    }
-                    promise = _loadData(widget.channel.data, widget)
-                    .then(function() {
-                        var id = setInterval(function() {
-                            _loadData(widget.channel.data, widget);
-                        }, widget.channel.interval);
-
-                        widget.unbindData = function() {
-                            clearInterval(id);
-                        };
-                    });
-                    break;
-                default:
-                    widget.unbindData = function(){};
-                    break;
-            }
-            return promise;
-        }
-
-        var widgetManager = {
+        return {
 
             getAllWidgets: function() {
                 return _widgetsInUse;
             },
 
             addWidget: function(widget) {
-                widget = angular.copy(widget);
-
-                if(widget.channel) {
-                    _load(widget).then(function(){
-                        _widgetsInUse.push(widget);
-                    });
-                } else {
+                widget.getData().then(function() {
                     _widgetsInUse.push(widget);
-                }
-
+                });
             },
 
             removeWidget: function(index) {
                 _widgetsInUse.splice(index, 1)[0].unbindData();
             }
         };
-
-        return widgetManager;
-
-
     }]);

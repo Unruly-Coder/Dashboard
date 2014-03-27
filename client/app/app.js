@@ -17,6 +17,7 @@ angular.module('app', ['dashboard', 'ngAnimate'])
 
         $scope.widgets = widgetList;
         $scope.addWidget = function(index) {
-            widgetManager.addWidget(widgetList[index]);
+            var widget = widgetService.createWidget(widgetList[index].settings);
+            widgetManager.addWidget(widget);
         };
     }]);
