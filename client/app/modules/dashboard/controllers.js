@@ -1,19 +1,37 @@
 angular.module('dashboard',[])
     .controller('DashboardCtrl', ['$scope', 'widgetManager', function($scope, widgetManager) {
 
-        widgetManager.loadAllWidgets();
-        $scope.dashboard =  widgetManager.getAllWidgets();
+        function saveDashboardState() {
+            localStorage.widgets = angular.toJson($scope.widgets);
+        }
 
-        $scope.remove = function(index) {
-            widgetManager.removeWidget(index);
-        };
+        function loadDashboardState() {
+           var storage = angular.fromJson(localStorage.widgets);
 
-        $scope.serialize = function(data) {
-            widgetManager.updateWidgetsPosition(data);
+           if(storage === undefined) {
+               return;
+           }
+
+           angular.forEach(storage, function(value) {
+               this.addWidget(value);
+           }, widgetManager);
+        }
+
+        loadDashboardState();
+
+        $scope.widgets = widgetManager.getAllWidgets();
+
+        $scope.remove = widgetManager.removeWidget;
+
+        $scope.updateWidgets = function(data) {
+            angular.forEach(data, function(value, key) {
+                this[key].col = value.col;
+                this[key].row = value.row;
+            }, $scope.widgets);
             $scope.$digest();
         };
 
-        $scope.$watch('dashboard', function(){
-           widgetManager.saveAllWidgets();
+        $scope.$watch('widgets', function(){
+           saveDashboardState();
         }, true);
     }]);
