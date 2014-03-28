@@ -5,12 +5,15 @@
 @import '_headers.scss';
 @import '_widgets.scss';
 
+html {
+  height: 100%;
+}
+
 body {
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
   font-size: 16px;
   color: $main-font-color;
-  background: url('../images/backgrounds/abstract.jpg');
-  background-size: 100%;
+  background: url('../images/backgrounds/dashboard_bg.jpg') center center;
   margin: 0;
 
   -webkit-touch-callout: none;
@@ -34,6 +37,7 @@ body {
 }
 
 .gridster {
+
   li {
     position: relative;
 
@@ -60,11 +64,80 @@ body {
       color: #000;
       z-index: 100;
       opacity: 0;
+      @include backface-visibility(hidden);
     }
 
-    &:hover .icon-close {
+    .settings-tile {
+      @include transition(opacity 0.3s);
+      position: absolute;
+      left: 10px;
+      top: 10px;
+      cursor: pointer;
+      color: #000;
+      z-index: 100;
+      opacity: 0;
+      display: none;
+      @include backface-visibility(hidden);
+    }
+
+    .front-tile {
+      @include transition(opacity 0.3s);
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      cursor: pointer;
+      color: #fff;
+      z-index: 100;
+      opacity: 0;
+      @include backface-visibility(hidden);
+      @include rotateY(180deg);
+    }
+
+
+
+    &:hover .icon-close,  &:hover .settings-tile, &:hover .front-tile {
       opacity: 1;
     }
+  }
+
+  .card {
+    @include perspective(1000);
+
+    .cardContainer {
+      @include transition(0.6s);
+      @include transform-style(preserve-3d);
+      width: 100%;
+      height: 100%;
+
+      &.active.flip {
+        @include rotateY(180deg);
+      }
+
+      &.active .settings-tile {
+        display: inline;
+      }
+    }
+
+    .front, .back {
+      @include backface-visibility(hidden);
+    }
+
+    .back {
+      @include rotateY(180deg);
+      background-color: black;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+    }
+
+    .front {
+      width: 100%;
+      height: 100%;
+      @include translateZ(-1px);
+    }
+
+
   }
 }
 

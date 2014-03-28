@@ -13,7 +13,8 @@ angular.module('dashboard')
                 angular.extend(widget.settings, {
                     col: 0,
                     row: 0,
-                    template: 'views/widgets/' + widget.settings.template
+                    template: 'views/widgets/' + widget.settings.template,
+                    editTemplate: widget.settings.editTemplate ? 'views/widgets/' + widget.settings.editTemplate : undefined
                 });
 
                 widgetList.push(widget);
@@ -41,9 +42,7 @@ angular.module('dashboard')
                             return promise;
                         };
 
-                        widget.serialize = function() {
-                            return angular.toJson(this);
-                        };
+                        widget.flip = false;
 
                         switch(widget.dataBind.type) {
                             case 'internal':

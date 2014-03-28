@@ -9,7 +9,7 @@
 
 .gridster li {
     list-style: none;
-    background-color: rgba(255,255,255,0.5);
+    /*background-color: rgba(255,255,255,0.5);*/
 }
 
 .gridster > * {
@@ -26,20 +26,20 @@
     position: absolute;
 }
 
-.ready .gs-w:not(.preview-holder) {
-    -webkit-transition: opacity .3s, left .3s, top .3s;
-    -moz-transition: opacity .3s, left .3s, top .3s;
-    -o-transition: opacity .3s, left .3s, top .3s;
-    transition: opacity .3s, left .3s, top .3s;
-}
+/*.ready .gs-w:not(.preview-holder) {*/
+    /*-webkit-transition: opacity .3s, left .3s, top .3s;*/
+    /*-moz-transition: opacity .3s, left .3s, top .3s;*/
+    /*-o-transition: opacity .3s, left .3s, top .3s;*/
+    /*transition: opacity .3s, left .3s, top .3s;*/
+/*}*/
 
-.ready .gs-w:not(.preview-holder),
-.ready .resize-preview-holder {
-    -webkit-transition: opacity .3s, left .3s, top .3s, width .3s, height .3s;
-    -moz-transition: opacity .3s, left .3s, top .3s, width .3s, height .3s;
-    -o-transition: opacity .3s, left .3s, top .3s, width .3s, height .3s;
-    transition: opacity .3s, left .3s, top .3s, width .3s, height .3s;
-}
+/*.ready .gs-w:not(.preview-holder),*/
+/*.ready .resize-preview-holder {*/
+    /*-webkit-transition: opacity .3s, left .3s, top .3s, width .3s, height .3s;*/
+    /*-moz-transition: opacity .3s, left .3s, top .3s, width .3s, height .3s;*/
+    /*-o-transition: opacity .3s, left .3s, top .3s, width .3s, height .3s;*/
+    /*transition: opacity .3s, left .3s, top .3s, width .3s, height .3s;*/
+/*}*/
 
 .gridster .preview-holder {
     z-index: 1;
