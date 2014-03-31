@@ -61,7 +61,6 @@ body {
       right: 10px;
       top: 10px;
       cursor: pointer;
-      color: #000;
       z-index: 100;
       opacity: 0;
       @include backface-visibility(hidden);
@@ -73,7 +72,6 @@ body {
       left: 10px;
       top: 10px;
       cursor: pointer;
-      color: #000;
       z-index: 100;
       opacity: 0;
       display: none;
@@ -98,6 +96,16 @@ body {
     &:hover .icon-close,  &:hover .settings-tile, &:hover .front-tile {
       opacity: 1;
     }
+
+
+  }
+
+  .light .icon-close, .light .settings-tile {
+    color: #000000;
+  }
+
+  .dark .icon-close, .dark .settings-tile {
+    color: #ffffff;
   }
 
   .card {

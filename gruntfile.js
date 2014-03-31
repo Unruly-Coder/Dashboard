@@ -23,6 +23,10 @@ module.exports = function(grunt) {
                 files: ['client/vendor/css/**/*.css'],
                 tasks: ['concat:css']
             },
+            widgetscss: {
+                files: ['client/app/widgets/**/*.scss'],
+                tasks: ['concat:widgetscss']
+            },
             views: {
                 files: ['client/app/widgets/**/*.html'],
                 tasks: ['copy:views']
@@ -47,6 +51,10 @@ module.exports = function(grunt) {
                     'client/vendor/css/**/*.css',
                 ],
                 dest: 'client/public/stylesheets/external.css'
+            },
+            widgetscss: {
+                src: ['client/app/widgets/**/*.scss'],
+                dest: 'client/sass/_widgets.scss'
             }
         },
         compass: {

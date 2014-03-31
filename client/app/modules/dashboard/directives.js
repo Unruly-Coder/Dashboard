@@ -57,6 +57,13 @@ angular.module('dashboard').directive('gridsterItem', [
                 removeTile: '&'
             },
             link: function (scope, elm, attrs, controller) {
+
+                if(scope.options.color !== undefined && color2color(scope.options.color,'hsl').components.l > 50) {
+                    elm.addClass('light');
+                } else {
+                    elm.addClass('dark');
+                }
+
                 scope.remove = function() {
                     controller.removeItem(elm);
                 };
