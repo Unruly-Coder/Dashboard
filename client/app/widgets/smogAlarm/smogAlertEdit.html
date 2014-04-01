@@ -1,1 +1,4 @@
-test2
+<div ng-controller="smogAlertEditCtrl">
+    <select ng-model="station" ng-options="s.address group by s.city for s in stations"></select>
+    <button ng-click="save()">Save</button>
+</div>

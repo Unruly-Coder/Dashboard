@@ -1,4 +1,6 @@
 <div class="smogAlert">
-
-    <p class="footer">SMOG ALERT</p>
+    <p ng-repeat="p in options.data.pollutants">
+        {{p.pollutant}} - {{p.normPercent}} %
+     </p>
+    <p class="footer">{{options.data.city}}</p>
 </div>

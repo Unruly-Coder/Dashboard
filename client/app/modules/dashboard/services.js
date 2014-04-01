@@ -28,6 +28,8 @@ angular.module('dashboard')
                     createWidget: function(widgetData) {
                         var bindReference, url, widget = {};
 
+                        widget.flip = false;
+
                         angular.extend(widget, widgetData);
 
                         widget.getData = function() {
@@ -36,13 +38,11 @@ angular.module('dashboard')
                             promise.then(function(response){
                                 widget.data = response.data;
                             }, function() {
-                                console.error('can not connect with' + url );
+                                console.error('can not connect with ' + url );
                             });
 
                             return promise;
                         };
-
-                        widget.flip = false;
 
                         switch(widget.dataBind.type) {
                             case 'internal':

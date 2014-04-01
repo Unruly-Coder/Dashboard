@@ -137,6 +137,8 @@ body {
       height: 100%;
       position: absolute;
       top: 0;
+      @include box-sizing(border-box);
+      padding: 30px;
     }
 
     .front {
