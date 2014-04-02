@@ -8,7 +8,7 @@ angular.module('dashboard')
             editTemplate: 'weatherEdit.html',
             dataBind: {
                 type: 'external',
-                source: 'http://api.openweathermap.org/data/2.5/forecast/daily?id=3094802&units=metric&cnt=7',
+                source: 'http://api.openweathermap.org/data/2.5/weather?id=3094802&units=metric',
                 interval: 60000
             }
         });

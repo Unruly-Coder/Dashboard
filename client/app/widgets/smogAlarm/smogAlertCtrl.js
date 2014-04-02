@@ -11,9 +11,9 @@ angular.module('dashboard')
             {address: 'os. Ogrody', city: 'Skawina', 'url': 'http://smogalert.pl/api/stats/skawina'}
         ]);
 
-        $scope.stations = stationCollection.all();
-
         $scope.station = stationCollection.find('url', $scope.options.dataBind.source);
+
+        $scope.stations = stationCollection.all();
 
         $scope.save = function() {
             $scope.options.dataBind.source = $scope.station.url;

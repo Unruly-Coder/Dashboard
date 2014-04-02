@@ -3,7 +3,7 @@ angular.module('dashboard')
         widgetServiceProvider.register('smog alert', {
             sizex: 2,
             sizey: 2,
-            color: '#ffffff',
+            color: '#292625',
             template: 'smogAlert.html',
             editTemplate: 'smogAlertEdit.html',
             dataBind: {
