@@ -17,43 +17,20 @@ angular.module('dashboard')
             ];
         }
 
-//        $interval(function() {
-//            $scope.options.data.pollutants[2].normPercent = Math.floor(Math.random() * 200);
-//            $scope.chartData = getParseData($scope.options.data.pollutants[2].normPercent);
-//        },3000);
-
         $scope.chartData = getParseData($scope.options.data.pollutants[2].normPercent);
-
-//        $scope.chartData = [
-//            {value: pollutant, color: color},
-//            {value: space, color: '#000'}
-//        ];
 
         $scope.$watch(function() {
             return $scope.options.data.pollutants[2].normPercent;
         }, function(newValue) {
             $scope.chartData = getParseData(newValue);
-            console.log(newValue)
         });
 
         $scope.chartOptions = {
-            //Boolean - Whether we should show a stroke on each segment
-            segmentShowStroke : false,
-
-            //The percentage of the chart that we cut out of the middle.
-            percentageInnerCutout : 95,
-
-            //Boolean - Whether we should animate the chart
-            animation : true,
-
-            //Boolean - Whether we animate the rotation of the Doughnut
-            animateRotate : false,
-
-            //Boolean - Whether we animate scaling the Doughnut from the centre
-            animateScale : false,
-
-            //Function - Will fire on animation completion.
-            onAnimationComplete : null
+            segmentShowStroke : false,             //Boolean - Whether we should show a stroke on each segment
+            percentageInnerCutout : 95,            //The percentage of the chart that we cut out of the middle.
+            animation : true,                      //Boolean - Whether we should animate the chart
+            animateRotate : false,                 //Boolean - Whether we animate the rotation of the Doughnut
+            animateScale : true                    //Boolean - Whether we animate scaling the Doughnut from the centre
         };
     }])
 

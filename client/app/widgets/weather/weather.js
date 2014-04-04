@@ -1,9 +1,9 @@
 angular.module('dashboard')
     .config(function(widgetServiceProvider) {
-        widgetServiceProvider.register('weather widget', {
+        widgetServiceProvider.register('weather', {
             sizex: 1,
             sizey: 1,
-            color: '#ffffff',
+            color: '#e9367a',
             template: 'weather.html',
             editTemplate: 'weatherEdit.html',
             dataBind: {

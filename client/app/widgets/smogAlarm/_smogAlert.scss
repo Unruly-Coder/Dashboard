@@ -31,3 +31,23 @@
     text-align: center;
   }
 }
+
+.smogAlertEdit {
+  p {
+    text-transform: uppercase;
+  }
+
+  button {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+  }
+
+  select {
+    option {
+      color: #000000;
+      padding: 25px;
+    }
+    width: 100%;
+  }
+}

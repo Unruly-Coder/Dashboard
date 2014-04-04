@@ -1,1 +1,5 @@
-test
+<div class="weatherEdit" ng-controller="weatherEditCtrl">
+    <p>CHOOSE CITY</p>
+    <select ng-model="city" ng-options="l.city for l in cities"></select>
+    <button ng-click="save()">Save</button>
+</div>
