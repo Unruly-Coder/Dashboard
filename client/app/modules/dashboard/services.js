@@ -96,8 +96,9 @@ angular.module('dashboard')
             },
 
             addWidget: function(widget) {
-                _widgetsInUse.push(widget);
-                widget.getData();
+                widget.getData().then(function() {
+                    _widgetsInUse.push(widget);
+                });
             },
 
             removeWidget: function(index) {

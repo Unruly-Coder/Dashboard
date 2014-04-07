@@ -36,6 +36,13 @@
             }
         ]
     },
+    "modules/birthday":{
+        "url" : "",
+        "username" : "",
+        "password" : "",
+        "domain" : "",
+        "hostname" : ""
+    },
     "modules/foosballManager":{
 
     },
