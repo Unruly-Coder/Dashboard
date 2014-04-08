@@ -8,6 +8,12 @@
     "services/data":{
 
     },
+    "services/servicehub": {
+        "username" : "",
+        "password" : "",
+        "domain" : "",
+        "hostname" : ""
+    },
     "services/database":{
         "path":"mongodb://localhost/dashboard"
     },
@@ -37,11 +43,7 @@
         ]
     },
     "modules/birthday":{
-        "url" : "",
-        "username" : "",
-        "password" : "",
-        "domain" : "",
-        "hostname" : ""
+        "url" : ""
     },
     "modules/foosballManager":{
 
@@ -57,5 +59,8 @@
     },
     "modules/routes/page":{
         "path":"./client/public/views/index.html"
+    },
+    "modules/routes/userImage": {
+        "url" : ""
     }
 }
