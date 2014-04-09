@@ -1,5 +1,6 @@
 <div class="birthday">
-    <p ng-repeat="person in options.data">
-        {{ person.name }} : {{ person.surname }}
-    <p>
+    <div class="person" ng-repeat="person in options.data">
+        <img ng-src="{{'/user/' + person.account }}" alt=""/>
+        <p>{{ person.name }} {{ person.surname }}</p>
+    </div>
 </div>

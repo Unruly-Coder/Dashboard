@@ -57,10 +57,11 @@
     "modules/routes/api":{
 
     },
-    "modules/routes/page":{
-        "path":"./client/public/views/index.html"
-    },
     "modules/routes/userImage": {
         "url" : ""
+    },
+    "modules/routes/page":{
+        "path":"./client/public/views/index.html"
     }
+
 }

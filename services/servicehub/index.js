@@ -5,6 +5,7 @@ module.exports = function setup(options, imports, register) {
     q = require('q');
     ntlm = require('ntlm');
     ntlmrequest = require('request').defaults({
+        timeout: 1000,
         agentClass: require('agentkeepalive').HttpsAgent
     });
 
@@ -12,14 +13,18 @@ module.exports = function setup(options, imports, register) {
         var deffered = q.defer();
 
         ntlmrequest(url, {
+            encoding: null,
+            jar: true,
             headers: {
                 'Authorization': ntlm.challengeHeader(options.hostname, options.domain)
             }
         }, function (err, res) {
+            console.log(err);
             if(err) {
                 deffered.reject(err)
             } else {
-                ntlmrequest(url, {
+               ntlmrequest(url, {
+                    encoding: null,
                     headers: {
                         'Authorization': ntlm.responseHeader(res, url, options.domain, options.username, options.password)
                     }
@@ -32,7 +37,6 @@ module.exports = function setup(options, imports, register) {
                 });
             }
         });
-
         return deffered.promise;
     }
 
