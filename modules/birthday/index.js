@@ -1,10 +1,12 @@
 module.exports = function setup(options, imports, register) {
 
-    var data, _,  dataService, servicehub;
+    var data, _,  dataService, servicehub, CronJob, job;
 
     dataService = imports.data;
     servicehub  = imports.servicehub;
     _ = require('underscore');
+    CronJob = require('cron').CronJob;
+
 
     function parseJson(jsonString) {
         var  name, surname, account, birthday, data, newData, canAdd, office;
@@ -63,8 +65,16 @@ module.exports = function setup(options, imports, register) {
         return birthdayPeople;
     }
 
-    servicehub.getData(options.url).then(function(jsonData) {
-        dataService.set('birthday', getBirthdayPeople(parseJson(jsonData)));
+    function updateData() {
+        servicehub.getData(options.url).then(function(jsonData) {
+            dataService.set('birthday', getBirthdayPeople(parseJson(jsonData)));
+        });
+    }
+
+    job = new CronJob({
+        cronTime: '00 00 01 * * *',
+        onTick: updateData,
+        start: true
     });
 
     register(null, {});

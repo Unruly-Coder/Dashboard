@@ -18,7 +18,6 @@ module.exports = function setup(options, imports, register) {
                 'Authorization': ntlm.challengeHeader(options.hostname, options.domain)
             }
         }, function (err, res) {
-            console.log(err);
             if(err) {
                 deffered.reject(err)
             } else {
