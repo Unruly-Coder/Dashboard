@@ -3,6 +3,16 @@
   height: 100%;
   overflow: hidden;
 
+  h1 {
+    position: absolute;
+    z-index: 1;
+    font-size: 15px;
+    background: #000;
+    color: #fff;
+    padding: 10px;
+    margin: 0;
+  }
+
   .person {
     position: relative;
     float:left;
@@ -17,12 +27,14 @@
     p {
       position: absolute;
       margin: 0;
-      bottom: 25px;
+      bottom: 0;
       text-align: center;
       width: 100%;
-      background-color: hotpink;
+      background-color: #008b9c;
       padding: 10px 0;
       font-weight: bold;
+      background: #000;
+      color: #fff;
     }
 
   }

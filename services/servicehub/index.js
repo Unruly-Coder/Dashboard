@@ -5,8 +5,8 @@ module.exports = function setup(options, imports, register) {
     q = require('q');
     ntlm = require('ntlm');
     ntlmrequest = require('request').defaults({
-        timeout: 1000,
-        agentClass: require('agentkeepalive').HttpsAgent
+        agentClass: require('agentkeepalive').HttpsAgent,
+        timeout: 1000
     });
 
     function getData(url) {
@@ -14,7 +14,6 @@ module.exports = function setup(options, imports, register) {
 
         ntlmrequest(url, {
             encoding: null,
-            jar: true,
             headers: {
                 'Authorization': ntlm.challengeHeader(options.hostname, options.domain)
             }
@@ -23,10 +22,11 @@ module.exports = function setup(options, imports, register) {
             if(err) {
                 deffered.reject(err)
             } else {
-               ntlmrequest(url, {
+                ntlmrequest(url, {
                     encoding: null,
                     headers: {
-                        'Authorization': ntlm.responseHeader(res, url, options.domain, options.username, options.password)
+                        'Authorization': ntlm.responseHeader(res, url, options.domain, options.username, options.password),
+                        'Connection': 'Close'
                     }
                 }, function (err, res, body) {
                     if(err) {

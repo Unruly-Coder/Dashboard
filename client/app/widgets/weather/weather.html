@@ -1,5 +1,5 @@
 <div class="weather">
+    <div class="ico {{ 'ico-' + options.data.weather[0].icon }}"></div>
     <p class="temp">{{options.data.main.temp | number: 0}}<sup>&deg;C</sup></p>
-
     <p class="footer">{{options.data.name}}</p>
 </div>
