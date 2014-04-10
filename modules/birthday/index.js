@@ -1,6 +1,6 @@
 module.exports = function setup(options, imports, register) {
 
-    var data, _,  dataService, servicehub, CronJob, job;
+    var _,  dataService, servicehub, CronJob, job;
 
     dataService = imports.data;
     servicehub  = imports.servicehub;
@@ -71,6 +71,7 @@ module.exports = function setup(options, imports, register) {
         });
     }
 
+    updateData();
     job = new CronJob({
         cronTime: '00 00 01 * * *',
         onTick: updateData,
