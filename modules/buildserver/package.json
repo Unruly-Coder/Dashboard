@@ -1,9 +1,9 @@
 {
-    "name": "birthday",
+    "name": "buildserver",
     "version": "0.0.1",
     "main": "index.js",
     "private": true,
     "plugin": {
-        "consumes": ["data", "servicehub", "logger"]
+        "consumes": ["data", "logger"]
     }
 }

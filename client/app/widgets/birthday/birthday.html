@@ -4,4 +4,7 @@
         <img ng-src="{{'/user/' + person.account }}" alt=""/>
         <p>{{ person.name }} {{ person.surname }}</p>
     </div>
+    <div ng-if="!options.data[0]" class="person">
+        <p>Sorry winetu nie ma urodzin</p>
+    </div>
 </div>

@@ -19,7 +19,7 @@ module.exports = function setup(options, imports, register) {
             }
         }, function (err, res) {
             if(err) {
-                deffered.reject(err)
+                deffered.reject(err);
             } else {
                 ntlmrequest(url, {
                     encoding: null,
@@ -29,7 +29,7 @@ module.exports = function setup(options, imports, register) {
                     }
                 }, function (err, res, body) {
                     if(err) {
-                        deffered.reject(err)
+                        deffered.reject(err);
                     } else {
                         deffered.resolve(body);
                     }

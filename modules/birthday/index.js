@@ -1,9 +1,10 @@
 module.exports = function setup(options, imports, register) {
 
-    var _,  dataService, servicehub, CronJob, job;
+    var _,  dataService, servicehub, logger, CronJob, job;
 
     dataService = imports.data;
     servicehub  = imports.servicehub;
+    logger = imports.logger;
     _ = require('underscore');
     CronJob = require('cron').CronJob;
 
@@ -49,7 +50,7 @@ module.exports = function setup(options, imports, register) {
             }
         });
 
-        return newData
+        return newData;
     }
 
     function getBirthdayPeople(data) {
@@ -66,6 +67,7 @@ module.exports = function setup(options, imports, register) {
     }
 
     function updateData() {
+        logger.info('Birthday data updated - ' + new Date());
         servicehub.getData(options.url).then(function(jsonData) {
             dataService.set('birthday', getBirthdayPeople(parseJson(jsonData)));
         });
