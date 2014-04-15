@@ -6,4 +6,38 @@
     padding: 5px;
     border: 1px solid #505050;
   }
+
+  .select2-container .select2-choice {
+    color: #fff;
+    border-radius: 0px !important;
+    border: 1px solid #505050;
+    background: transparent;
+    line-height: 28px;
+    height: 28px;
+    outline: none;
+    @include box-shadow(none);
+  }
+
+  .select2-container.select2-dropdown-open .select2-choice {
+    background: #e1e1e1;
+    border: 1px solid #e1e1e1;
+    color: #000;
+  }
+}
+
+.select2-search {
+  padding-top: 4px;
+}
+
+.select2-results {
+  font-size: 12px;
+
+  .select2-highlighted {
+    background: #e73277;
+  }
+}
+
+.select2-drop, .select2-drop-active {
+  border: 1px solid #fff;
+  border-radius: 0;
 }

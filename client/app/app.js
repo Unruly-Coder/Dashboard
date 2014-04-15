@@ -1,4 +1,4 @@
-angular.module('app', ['dashboard', 'ngAnimate', 'ngCollection', 'chartjs'])
+angular.module('app', ['dashboard', 'ngAnimate', 'ngCollection', 'chartjs', 'ui.select2'])
 
     .controller('AppCtrl', ['$scope','$location', function($scope, $location) {
         $scope.$watch(function() {

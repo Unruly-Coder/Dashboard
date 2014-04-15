@@ -1,5 +1,5 @@
 angular.module('dashboard')
-    .controller('smogAlertCtrl', ['$scope', '$interval', function($scope, $interval){
+    .controller('smogAlertCtrl', ['$scope', function($scope){
 
         function getParseData(value) {
             var pollutant =  value,

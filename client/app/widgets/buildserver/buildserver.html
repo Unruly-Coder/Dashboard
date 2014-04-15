@@ -1,3 +1,4 @@
-<div class="buildserver">
-    Build Server
+<div class="buildserver" ng-controller="buildserverCtrl" ng-class="{true: 'smile', false: 'sad'}[options.data[options.project].lastBuildStatus == 'Success']">
+    <p class="name">{{options.data[options.project].name}}</p>
+    <p class="activity">{{options.data[options.project].lastBuildStatus}} - {{options.data[options.project].activity}}</p>
 </div>

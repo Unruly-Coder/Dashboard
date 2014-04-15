@@ -24,7 +24,7 @@ module.exports = function setup(options, imports, register) {
                     name: project.$.name,
                     lastBuildStatus: project.$.lastBuildStatus,
                     activity: project.$.activity
-                }
+                };
             });
 
             deffered.resolve(projects);
@@ -38,7 +38,7 @@ module.exports = function setup(options, imports, register) {
 
         request(url, function(err, res, body) {
             if(err) {
-                deffered.reject(err)
+                deffered.reject(err);
             }
 
             deffered.resolve(body);
