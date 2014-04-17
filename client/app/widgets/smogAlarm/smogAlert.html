@@ -1,6 +1,6 @@
 <div class="smogAlert" ng-controller="smogAlertCtrl">
     <p class="pollutant">PM10</p>
-    <cjs-doughnut dataset="chartData" options="chartOptions"  width="180" height="180"></cjs-doughnut>
+    <cjs-doughnut dataset="chartData()" options="chartOptions"  width="180" height="180"></cjs-doughnut>
     <div class="percentage">{{options.data.pollutants[2].normPercent}} %</div>
     <p class="footer">{{options.data.city}}</p>
 </div>

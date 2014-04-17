@@ -1,8 +1,10 @@
 angular.module('dashboard')
     .controller('smogAlertCtrl', ['$scope', function($scope){
 
-        function getParseData(value) {
-            var pollutant =  value,
+        var chartData = [];
+
+        $scope.chartData = function() {
+            var pollutant =  $scope.options.data.pollutants[2].normPercent,
                 space = 100 - pollutant,
                 color = '#89ae0d';
 
@@ -11,19 +13,12 @@ angular.module('dashboard')
                 color = '#ec1414';
             }
 
-            return [
-                {value: pollutant, color: color},
-                {value: space, color: '#000'}
-            ];
+            chartData.length = 0;
+            chartData.push({value: pollutant, color: color});
+            chartData.push({value: space, color: '#000'})
+
+            return chartData;
         }
-
-        $scope.chartData = getParseData($scope.options.data.pollutants[2].normPercent);
-
-        $scope.$watch(function() {
-            return $scope.options.data.pollutants[2].normPercent;
-        }, function(newValue) {
-            $scope.chartData = getParseData(newValue);
-        });
 
         $scope.chartOptions = {
             segmentShowStroke : false,             //Boolean - Whether we should show a stroke on each segment
@@ -50,7 +45,7 @@ angular.module('dashboard')
         $scope.save = function() {
             $scope.options.dataBind.source = $scope.station.url;
             $scope.options.getData().then(function() {
-                $scope.options.flip = false;
+            $scope.options.flip = false;
             });
         };
     }]);
