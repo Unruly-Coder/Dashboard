@@ -15,10 +15,10 @@ angular.module('dashboard')
 
             chartData.length = 0;
             chartData.push({value: pollutant, color: color});
-            chartData.push({value: space, color: '#000'})
+            chartData.push({value: space, color: '#000'});
 
             return chartData;
-        }
+        };
 
         $scope.chartOptions = {
             segmentShowStroke : false,             //Boolean - Whether we should show a stroke on each segment
