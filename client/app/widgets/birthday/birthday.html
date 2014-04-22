@@ -1,10 +1,10 @@
 <div class="birthday">
-    <h1>BIRTHDAY</h1>
+    <h1>HAPPY BIRTHDAY</h1>
     <div class="person" ng-repeat="person in options.data">
         <img ng-src="{{'/user/' + person.account }}" alt=""/>
         <p>{{ person.name }} {{ person.surname }}</p>
     </div>
     <div ng-if="!options.data[0]" class="person">
-        <p>Sorry winetu nie ma urodzin</p>
+        <p>Sorry no birthday today</p>
     </div>
 </div>

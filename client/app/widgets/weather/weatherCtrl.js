@@ -3,8 +3,8 @@ angular.module('dashboard')
 
         var cityCollection = $collection.getInstance(),
             colors = {
-                good : '#e9367b',
-                bad : '#008b9c'
+                day : '#2a6c62',
+                night : '#11264a'
             };
 
         cityCollection.addAll([
@@ -12,22 +12,22 @@ angular.module('dashboard')
             {city: 'Oslo', 'url': 'http://api.openweathermap.org/data/2.5/weather?id=3143244&units=metric'}
         ]);
 
-        $scope.city = cityCollection.find('url', $scope.options.dataBind.source);
+        $scope.city = $scope.options.dataBind.source;
 
         $scope.cities = cityCollection.all();
 
         $scope.$watch(function() {
             return $scope.options.data.weather[0].icon;
         }, function(newData) {
-            if(newData === "01d" || newData === "02d" ||  newData === "01n" ||  newData === "02n") {
-                $scope.options.color = colors.good;
+            if(newData.match(/^\d{2}d$/)) {
+                $scope.options.color = colors.day;
             } else {
-                $scope.options.color = colors.bad;
+                $scope.options.color = colors.night;
             }
         });
 
         $scope.save = function() {
-            $scope.options.dataBind.source = $scope.city.url;
+            $scope.options.dataBind.source = $scope.city;
             $scope.options.getData().then(function() {
                 $scope.options.flip = false;
             });

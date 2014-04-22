@@ -38,12 +38,12 @@ angular.module('dashboard')
             {address: 'ul. Bujaka', city: 'Kraków', 'url': 'http://smogalert.pl/api/stats/krakow-bujaka'}
         ]);
 
-        $scope.station = stationCollection.find('url', $scope.options.dataBind.source);
+        $scope.station = $scope.options.dataBind.source;
 
         $scope.stations = stationCollection.all();
 
         $scope.save = function() {
-            $scope.options.dataBind.source = $scope.station.url;
+            $scope.options.dataBind.source = $scope.station;
             $scope.options.getData().then(function() {
             $scope.options.flip = false;
             });

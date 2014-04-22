@@ -1,7 +1,7 @@
 <div class="smogAlertEdit" ng-controller="smogAlertEditCtrl">
     <p>choose location</p>
-    <select ng-model="station" ng-options="s.address for s in stations">
-        <!--<option ng-repeat="s in stations" value="{{index}}">{{s.address}}</option>-->
+    <select ng-model="station" ui-select2="{ minimumResultsForSearch: 10 }">
+        <option ng-repeat="s in stations" value="{{s.url}}">{{s.address}}</option>
     </select>
     <button ng-click="save()">Save</button>
 </div>

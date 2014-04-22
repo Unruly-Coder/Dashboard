@@ -3,7 +3,7 @@ angular.module('dashboard')
         widgetServiceProvider.register('birthday', {
             sizex: 2,
             sizey: 2,
-            color: '#ffffff',
+            color: '#e9367a',
             template: 'birthday.html',
             dataBind: {
                 type: 'internal',
