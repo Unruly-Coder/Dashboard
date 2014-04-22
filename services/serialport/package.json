@@ -4,6 +4,7 @@
     "main": "index.js",
     "private": true,
     "plugin": {
-        "provides": ["serialport"]
+        "provides": ["serialport"],
+        "consumes": ["logger"]
     }
 }

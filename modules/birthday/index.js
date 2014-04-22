@@ -67,9 +67,11 @@ module.exports = function setup(options, imports, register) {
     }
 
     function updateData() {
-        logger.info('Birthday data updated - ' + new Date());
         servicehub.getData(options.url).then(function(jsonData) {
+            logger.info('Birthday data updated - ' + new Date());
             dataService.set('birthday', getBirthdayPeople(parseJson(jsonData)));
+        }, function(error) {
+            logger.error('Can not update birthday data - ' + error);
         });
     }
 

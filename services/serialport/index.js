@@ -2,6 +2,8 @@ var serialport = require('serialport');
 
 module.exports = function setup(options, imports, register) {
 
+    var logger = imports.logger;
+
     if(!options.path) {
         throw 'serial port cannot be initialized. Missing path';
     }
@@ -11,7 +13,10 @@ module.exports = function setup(options, imports, register) {
 
         var serial,
             polyfill = function(error) {
-                console.log(error);
+                if(error) {
+                    logger.error('serialport - ' + error.message);
+                }
+
                 serial = { on : function() { }};
             };
 
