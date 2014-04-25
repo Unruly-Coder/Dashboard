@@ -3,7 +3,7 @@ angular.module('dashboard')
         widgetServiceProvider.register('buildserver', {
             sizex: 2,
             sizey: 2,
-            color: '#ffffff',
+            color: '#63c3b5',
             template: 'buildserver.html',
             editTemplate: 'buildserverEdit.html',
             dataBind: {
