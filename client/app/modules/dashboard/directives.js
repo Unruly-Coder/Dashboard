@@ -56,7 +56,7 @@ angular.module('dashboard').directive('gridsterItem', [
                 options: '=',
                 removeTile: '&'
             },
-            link: function (l, elm, attrs, controller) {
+            link: function (scope, elm, attrs, controller) {
 
                 if(scope.options.color !== undefined && color2color(scope.options.color,'hsl').components.l > 50) {
                     elm.addClass('light');
