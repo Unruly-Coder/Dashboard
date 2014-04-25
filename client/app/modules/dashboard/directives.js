@@ -50,13 +50,13 @@ angular.module('dashboard').directive('gridsterItem', [
         return {
             restrict: 'E',
             require: '^gridster',
-            template: '<li class="card"><div class="cardContainer" ng-class="{flip : options.flip, active : options.editTemplate}"><a class="icon-close" ng-click="remove()"></a><a class="settings-tile icon-menu2" ng-click="options.flip=!options.flip"></a><a class="front-tile icon-undo2" ng-click="options.flip=!options.flip"></a><div class="front" style="background-color: {{options.color}}" ng-include="options.template" ></div><div class="back" ng-include="options.editTemplate"></div></div></li>',
+            template: '<li class="card"><div class="cardContainer" ng-class="{flip : options.flip, active : options.editTemplate}"><a class="icon-close" ng-click="remove()"></a><a class="settings-tile icon-menu2" ng-click="options.flip=!options.flip"></a><a class="front-tile icon-undo2" ng-click="options.flip=!options.flip"></a><div class="front" style="background-color: {{options.color}}"><ng-include src="options.template" ng-if="options.data"></ng-include></div><div class="back"><ng-include ng-if="options.data" src="options.editTemplate" ></ng-include></div></div></li>',
             replace: true,
             scope: {
                 options: '=',
                 removeTile: '&'
             },
-            link: function (scope, elm, attrs, controller) {
+            link: function (l, elm, attrs, controller) {
 
                 if(scope.options.color !== undefined && color2color(scope.options.color,'hsl').components.l > 50) {
                     elm.addClass('light');

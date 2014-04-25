@@ -7,5 +7,5 @@ angular.module('app').directive('blend', function() {
         link: function(scope, elem, attrs) {
             elem.blend(scope.blend);
         }
-    }
+    };
 });

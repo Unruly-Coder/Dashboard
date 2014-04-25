@@ -3,7 +3,7 @@ angular.module('dashboard')
         widgetServiceProvider.register('weather', {
             sizex: 1,
             sizey: 1,
-            color: '#e9367a',
+            color: '#2a6c62',
             template: 'weather.html',
             editTemplate: 'weatherEdit.html',
             dataBind: {
