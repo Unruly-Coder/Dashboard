@@ -11,8 +11,8 @@
     <div ng-controller="DashboardCtrl" ng-include="'/views/dashboard.html'" class="dashboard"></div>
     <div class="card btn-settings">
         <div class="cardContainer" ng-class="{flip: configuration == true}">
-            <a href="#/config" class="btn icon-cog frontside"></a>
-            <a href="#/" class="btn icon-arrow-left2 backside"></a>
+            <a href="#/config" class="button icon-cog frontside"></a>
+            <a href="#/" class="button icon-arrow-left2 backside"></a>
         </div>
     </div>
     <aside class="aside"  ng-include="'/views/settings.html'" ng-controller="ConfigurationCtrl" ng-class="{active: configuration == true}" ></aside>

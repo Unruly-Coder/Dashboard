@@ -6,7 +6,7 @@ module.exports = function setup(options, imports, register) {
     ntlm = require('ntlm');
     ntlmrequest = require('request').defaults({
         agentClass: require('agentkeepalive').HttpsAgent,
-        timeout: 1000
+        timeout: 10000
     });
 
     function getData(url) {

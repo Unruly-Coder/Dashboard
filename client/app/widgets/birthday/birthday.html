@@ -1,9 +1,17 @@
-<div class="birthday">
-    <h1>HAPPY BIRTHDAY</h1>
-    <div class="person" ng-repeat="person in options.data">
-        <img ng-src="{{'/user/' + person.account }}" alt=""/>
-        <p>{{ person.name }} {{ person.surname }}</p>
+<div class="birthday"  set-ng-animate="false">
+    <h1>Happy B-Day!</h1>
+    <div ng-repeat="person in options.data" ng-class="{ active: person.active }">
+        <img  class="bg-img" width="420" height="420" blend="{ mode: 'multiply', adjustment: 'rgb(255, 56, 123)', opacity: 0}" ng-src="{{'/user/' + person.account }}" alt=""/>
     </div>
+    <carousel interval="5000">
+        <slide ng-repeat="person in options.data"  active="person.active">
+            <div class="person">
+                <img class="main-img"  ng-src="{{'/user/' + person.account }}" alt=""/>
+                <p class="city">{{ person.office }}</p>
+                <p class="name">{{ person.name }} {{ person.surname }}</p>
+            </div>
+        </slide>
+    </carousel>
     <div ng-if="!options.data[0]" class="person">
         <p>Sorry no birthday today</p>
     </div>

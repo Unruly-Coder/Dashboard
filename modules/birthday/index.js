@@ -71,6 +71,7 @@ module.exports = function setup(options, imports, register) {
             logger.info('Birthday data updated - ' + new Date());
             dataService.set('birthday', getBirthdayPeople(parseJson(jsonData)));
         }, function(error) {
+            dataService.set('birthday',[]);
             logger.error('Can not update birthday data - ' + error);
         });
     }
