@@ -87,5 +87,23 @@
 
   }
 
+  .nobirthday {
+    img {
+      width: 115px;
+      opacity: 0.3;
+      display: block;
+      margin: 35px auto 0 auto;
+    }
+
+    p {
+      text-align: center;
+      width: 100%;
+      color: white;
+      position: absolute;
+      bottom: 25px;
+
+    }
+  }
+
 
 }

@@ -1,18 +1,21 @@
 <div class="birthday"  set-ng-animate="false">
-    <h1>Happy B-Day!</h1>
-    <div ng-repeat="person in options.data" ng-class="{ active: person.active }">
-        <img  class="bg-img" width="420" height="420" blend="{ mode: 'multiply', adjustment: 'rgb(255, 56, 123)', opacity: 0}" ng-src="{{'/user/' + person.account }}" alt=""/>
+    <div ng-if="options.data[0]">
+        <h1>Happy B-Day!</h1>
+        <div ng-repeat="person in options.data" ng-class="{ active: person.active }">
+            <img  class="bg-img" width="420" height="420" blend="{ mode: 'multiply', adjustment: 'rgb(255, 56, 123)', opacity: 0}" ng-src="{{'/user/' + person.account }}" alt=""/>
+        </div>
+        <carousel interval="5000">
+            <slide ng-repeat="person in options.data" active="person.active">
+                <div class="person">
+                    <img class="main-img"  ng-src="{{'/user/' + person.account }}" alt=""/>
+                    <p class="city">{{ person.office }}</p>
+                    <p class="name">{{ person.name }} {{ person.surname }}</p>
+                </div>
+            </slide>
+        </carousel>
     </div>
-    <carousel interval="5000">
-        <slide ng-repeat="person in options.data"  active="person.active">
-            <div class="person">
-                <img class="main-img"  ng-src="{{'/user/' + person.account }}" alt=""/>
-                <p class="city">{{ person.office }}</p>
-                <p class="name">{{ person.name }} {{ person.surname }}</p>
-            </div>
-        </slide>
-    </carousel>
-    <div ng-if="!options.data[0]" class="person">
-        <p>Sorry no birthday today</p>
+    <div ng-if="!options.data[0]" class="nobirthday">
+        <img alt="" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNy4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgNTEyIDczNiIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgNTEyIDczNiIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+DQo8cGF0aCBkPSJNMjU2LDI0MGMzMi40LDAsNjMuOCw2LjMsOTMuNCwxOC45YzI4LjYsMTIuMSw1NC4yLDI5LjQsNzYuMyw1MS40YzIyLDIyLDM5LjQsNDcuNyw1MS40LDc2LjNjMTIuNSwyOS42LDE4LjksNjEsMTguOSw5My40DQoJcy02LjMsNjMuOC0xOC45LDkzLjRjLTEyLjEsMjguNi0yOS40LDU0LjItNTEuNCw3Ni4zYy0yMiwyMi00Ny43LDM5LjQtNzYuMyw1MS40Yy0yOS42LDEyLjUtNjEsMTguOS05My40LDE4LjkNCgljLTMyLjQsMC02My44LTYuMy05My40LTE4LjljLTI4LjYtMTIuMS01NC4yLTI5LjQtNzYuMy01MS40Yy0yMi0yMi0zOS40LTQ3LjctNTEuNC03Ni4zQzIyLjMsNTQzLjgsMTYsNTEyLjQsMTYsNDgwDQoJczYuMy02My44LDE4LjktOTMuNGMxMi4xLTI4LjYsMjkuNC01NC4yLDUxLjQtNzYuM2MyMi0yMiw0Ny43LTM5LjQsNzYuMy01MS40QzE5Mi4yLDI0Ni4zLDIyMy42LDI0MCwyNTYsMjQwIE0yNTYsMjI0DQoJQzExNC42LDIyNCwwLDMzOC42LDAsNDgwczExNC42LDI1NiwyNTYsMjU2YzE0MS40LDAsMjU2LTExNC42LDI1Ni0yNTZTMzk3LjQsMjI0LDI1NiwyMjRMMjU2LDIyNHoiLz4NCjxwYXRoIGQ9Ik0zNzMuNCw2MTIuNWMtMzYuMi01NC03NS40LTgxLjMtMTE2LjYtODEuM2MtNzAuOCwwLTEyNS42LDgwLjUtMTI2LjEsODEuM2wtMTMuMy04LjljMC42LTAuOSwxNS4xLTIyLjMsMzkuMi00NA0KCWMzMi41LTI5LjEsNjcuMS00NC41LDEwMC4yLTQ0LjVjNDYuOSwwLDkwLjYsMjkuOCwxMjkuOSw4OC40TDM3My40LDYxMi41eiIvPg0KPGNpcmNsZSBjeD0iMTYxIiBjeT0iNDQ4IiByPSIzMiIvPg0KPGNpcmNsZSBjeD0iMzUzIiBjeT0iNDQ4IiByPSIzMiIvPg0KPHBhdGggZD0iTTI1NiwyMjRjMC41LDAsMS4xLDAsMS42LDBMNDQzLDM4LjZWMzl2MjY2LjJjNS42LDYsMTEsMTIuMywxNiwxOC44VjBMMjM0LjEsMjI0LjlDMjQxLjMsMjI0LjMsMjQ4LjYsMjI0LDI1NiwyMjR6Ii8+DQo8L3N2Zz4NCg==" />
+        <p>No birthday, no sweets</p>
     </div>
 </div>

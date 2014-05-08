@@ -56,7 +56,7 @@ angular.module('dashboard').directive('gridsterItem', [
                             '<a class="settings-tile icon-menu2" ng-click="options.flip=!options.flip"></a>' +
                             '<a class="front-tile icon-undo2" ng-click="options.flip=!options.flip"></a>' +
                             '<div class="front" style="background-color: {{options.color}}">' +
-                                '<div class="content" ng-include="options.template" ng-if="options.data"></div>' +
+                                '<div class="content" ng-include="options.template" ng-if="options.data !== undefined"></div>' +
                             '</div>' +
                             '<div class="back">' +
                                 '<div class="content" ng-include="options.editTemplate" ng-if="options.data"></div>' +
