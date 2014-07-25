@@ -3,8 +3,16 @@
   "version": "0.0.1",
   "description": "Server application for dashboard",
   "main": "app.js",
+  "config": {
+        "unsafe-perm":true
+  },
   "scripts": {
-    "test": "test"
+    "start": "node app.js",
+    "preinstall": "apt-get install ruby && gem install compass",
+    "install":  "grunt build",
+    "test": "test",
+    "build": "grunt build",
+    "development": "grunt development"
   },
   "keywords": [
     "dashboard"
