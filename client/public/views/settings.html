@@ -3,5 +3,5 @@
 </header>
 <p>Add module to dashboard:</p>
 <ul>
-    <li ng-repeat="widget in widgets" ng-click="addWidget($index)">{{ widget.name }}</li>
+    <li ng-repeat="widget in widgets" ng-click="addWidget($index)">{{ widget.name }} <span class="spinner" ng-show=""></span></li>
 </ul>

@@ -1,0 +1,14 @@
+@media screen and (max-width: 480px) {
+  body {
+    background-attachment: fixed !important;
+  }
+
+  .aside {
+    width: 100% !important;
+  }
+
+  .dashboard {
+    padding: 10px !important;
+    position: static !important;
+  }
+}

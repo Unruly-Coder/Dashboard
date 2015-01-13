@@ -19,7 +19,7 @@ angular.module('dashboard')
 
                 widgetList.push(widget);
             },
-            $get: function($http, socket) {
+            $get: function($http, socket, $q) {
 
                 return {
                     getWidgetList: function() {

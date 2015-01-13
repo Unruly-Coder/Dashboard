@@ -5,6 +5,9 @@
 @import '_icons.scss';
 @import '_headers.scss';
 @import '_widgets.scss';
+@import '_spinner.scss';
+@import '_mobile.scss';
+
 
 html {
   height: 100%;
@@ -105,6 +108,14 @@ body {
     color: #ffffff;
   }
 
+  .light .card_spinner {
+    background-color: #000;
+  }
+
+  .dark .card_spinner {
+    background-color: #fff;
+  }
+
   .card {
     .cardContainer {
 
@@ -160,7 +171,14 @@ body {
       }
     }
 
+    .card_spinner {
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      bottom: 10px;
+      right:  10px;
 
+    }
   }
 }
 
@@ -219,6 +237,7 @@ body {
     text-transform: uppercase;
     border: 1px solid #515050;
     margin-bottom: 10px;
+    position: relative;
 
     &:hover {
       color: hotpink;
