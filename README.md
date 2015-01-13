@@ -1,14 +1,15 @@
 ## Requirements
 
 - [node.js]
+- [compass]
 
 ## Install
 
 ```bash
-$ [sudo] npm install --unsafe-perm
+$ [sudo] npm install
 ```
 
-It will install ryby, compass and sass engine (if not installed),  download all npm dependencies and build project
+It will download all npm dependencies and build project
 
 ## Getting started
 
@@ -33,3 +34,4 @@ $ npm run build
 ```
 
 [node.js]:http://nodejs.org/
+[compass]:http://compass-style.org/install/

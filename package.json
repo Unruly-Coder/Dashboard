@@ -8,8 +8,7 @@
   },
   "scripts": {
     "start": "node app.js",
-    "preinstall": "apt-get install ruby && gem install compass",
-    "install":  "grunt build",
+    "install":  "grunt build && node app.js",
     "test": "test",
     "build": "grunt build",
     "development": "grunt development"
