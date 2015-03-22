@@ -1,6 +1,8 @@
 var express = require('express'),
     http = require('http'),
-	path = require('path'),
+    bodyParser = require('body-parser'),
+    favicon = require('serve-favicon'),
+    morgan = require('morgan'),
     _ = require('underscore');
 
 module.exports = function setup(options, imports, register) {
@@ -17,10 +19,9 @@ module.exports = function setup(options, imports, register) {
     app.set("view options", { layout: false });
     app.set('view engine', opts.engine);
 
-    app.use(express.bodyParser());
-    app.use(express.favicon(opts.favicon));
-    app.use(express.logger('dev'));
-    app.use(app.router);
+    app.use(bodyParser.urlencoded({ extended: false }));
+    app.use(favicon(opts.favicon));
+    app.use(morgan('dev'));
 
     for(var repo in opts.statics) {
         app.use(express.static(opts.statics[repo]));

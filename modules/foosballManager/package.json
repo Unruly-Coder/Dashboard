@@ -4,7 +4,6 @@
     "main": "index.js",
     "private": true,
     "plugin": {
-        "provides": ["foosballManager"],
-        "consumes": ["serialport", "data"]
+        "consumes": ["socketClient", "data", "logger"]
     }
 }

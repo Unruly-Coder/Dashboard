@@ -4,6 +4,6 @@
     "main": "index.js",
     "private": true,
     "plugin": {
-        "consumes": ["data", "websocket"]
+        "consumes": ["data", "socketServer"]
     }
 }

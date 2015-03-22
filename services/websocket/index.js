@@ -1,14 +1,13 @@
-var io = require('socket.io');
+var io = require('socket.io'),
+	ioClient = require('socket.io-client');
 
 module.exports = function setup(options, imports, register) {
 
-	var webserver = imports.webserver,
-		logger = imports.logger;
+	var webserver = imports.webserver;
 
 	io = io.listen(webserver.http);
-    io.set('log level', 2);
 	register(null, {
-		websocket: io
+		socketServer: io,
+		socketClient: ioClient
 	});
-
 };

@@ -17,11 +17,6 @@
     "services/database":{
         "path":"mongodb://localhost/dashboard"
     },
-    "services/serialport":{
-        "path":"/dev/ttyACM0",
-        "baudRate":9600,
-        "parser":"readline"
-    },
     "services/webserver":{
         "views":"./views",
         "port":3000,
@@ -46,10 +41,7 @@
         "url" : ""
     },
     "modules/foosballManager":{
-
-    },
-    "modules/foosballStats":{
-
+        "tableAddress": "http://localhost:3001"
     },
     "modules/rooms":{
 
