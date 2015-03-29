@@ -4,9 +4,6 @@
 config/production.json
 config/runtime.json
 node_modules/
-client/public/javascripts/*
-client/public/stylesheets/*.css
-client/public/views/widgets/*
-client/sass/_widgets.scss
+client/build/*
 logs/*.txt
 !.gitignore

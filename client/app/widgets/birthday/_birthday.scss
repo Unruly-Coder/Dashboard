@@ -35,7 +35,7 @@
   }
 
   canvas {
-    @include transition(opacity 1s);
+    @include vendor-prefix(transition, opacity 1s);
   }
 
   .active  canvas {

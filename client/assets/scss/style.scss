@@ -1,12 +1,13 @@
-@import 'compass';
+@import '../vendor/**/*.css';
+@import '_mixins.scss';
 @import '_colors.scss';
 @import '_buttons.scss';
 @import '_forms.scss';
 @import '_icons.scss';
 @import '_headers.scss';
-@import '_widgets.scss';
 @import '_spinner.scss';
 @import '_mobile.scss';
+@import '../../app/widgets/**/*.scss';
 
 
 html {
@@ -56,18 +57,18 @@ body {
     }
 
     .icon-close {
-      @include transition(opacity 0.3s);
+      @include vendor-prefix(transition, opacity 0.3s);
       position: absolute;
       right: 10px;
       top: 10px;
       cursor: pointer;
       z-index: 100;
       opacity: 0;
-      @include backface-visibility(hidden);
+      @include vendor-prefix(backface-visibility, hidden);
     }
 
     .settings-tile {
-      @include transition(opacity 0.3s);
+      @include vendor-prefix(transition, opacity 0.3s);
       position: absolute;
       left: 10px;
       top: 10px;
@@ -75,11 +76,11 @@ body {
       z-index: 100;
       opacity: 0;
       display: none;
-      @include backface-visibility(hidden);
+      @include vendor-prefix(backface-visibility, hidden);
     }
 
     .front-tile {
-      @include transition(opacity 0.3s);
+      @include vendor-prefix(transition, opacity 0.3s);
       position: absolute;
       right: 10px;
       top: 10px;
@@ -87,8 +88,8 @@ body {
       color: #fff;
       z-index: 100;
       opacity: 0;
-      @include backface-visibility(hidden);
-      @include rotateY(180deg);
+      @include vendor-prefix(backface-visibility, hidden);
+      @include vendor-prefix(transform, rotateY(180deg));
     }
 
 
@@ -120,7 +121,7 @@ body {
     .cardContainer {
 
       &.active.flip {
-        @include rotateY(180deg);
+        @include vendor-prefix(transform, rotateY(180deg));
       }
 
       &.active .settings-tile {
@@ -129,17 +130,17 @@ body {
     }
 
     .front, .back {
-      @include backface-visibility(hidden);
+      @include vendor-prefix(backface-visibility, hidden);
     }
 
     .back {
-      @include rotateY(180deg);
+      @include vendor-prefix(transform, rotateY(180deg));
       background-color: rgba(0,0,0,0.8);
       width: 100%;
       height: 100%;
       position: absolute;
       top: 0;
-      @include box-sizing(border-box);
+      @include vendor-prefix(box-sizing, border-box);
       padding: 25px;
       color: #747474;
       font-size: 14px;
@@ -148,7 +149,7 @@ body {
     .front {
       width: 100%;
       height: 100%;
-      @include translateZ(-1px);
+      @include vendor-prefix(transform, translateZ(-1px));
     }
 
     .content {
@@ -199,11 +200,11 @@ body {
   width: 320px;
   background: rgba(0,0,0,0.9);
   padding: 0 20px;
-  @include translateX(100%);
-  @include transition(all 0.36s ease);
+  @include vendor-prefix(transform, translateX(100%));
+  @include vendor-prefix(transition, all 0.36s ease);
 
   &.active {
-    @include translateX(0%);
+    @include vendor-prefix(transform, translateX(0%));
   }
 
   header {
@@ -254,15 +255,15 @@ body {
 }
 
 .card {
-  @include perspective(1000);
+  @include vendor-prefix(perspective, 1000);
 
   .cardContainer {
     &.flip {
-      @include rotateY(180deg);
+      @include vendor-prefix(transform, rotateY(180deg));
     }
 
-    @include transition(0.6s);
-    @include transform-style(preserve-3d);
+    @include vendor-prefix(transition, 0.6s);
+    transform-style: preserve-3d;
     width: 100%;
     height: 100%;
   }

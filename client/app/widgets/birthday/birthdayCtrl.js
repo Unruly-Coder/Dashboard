@@ -1,4 +1,4 @@
-angular.module('dashboard')
+angular.module('widget')
     .controller('birthdayCtrl', ['$scope', function($scope){
 
         $scope.slides = $scope.options.data;

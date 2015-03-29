@@ -1,0 +1,15 @@
+<div class="card btn-settings">
+    <div class="cardContainer" ng-class="{flip: configuration == true}">
+        <a href="#/config" class="button icon-cog frontside"></a>
+        <a href="#/" class="button icon-arrow-left2 backside"></a>
+    </div>
+</div>
+<aside class="aside" ng-controller="ConfigurationCtrl" ng-class="{active: configuration == true}" >
+    <header>
+        <h2>Settings</h2>
+    </header>
+    <p>Add module to dashboard:</p>
+    <ul>
+        <li ng-repeat="widget in widgets" ng-click="addWidget($index)">{{ widget.name }} <span class="spinner" ng-show=""></span></li>
+    </ul>
+</aside>

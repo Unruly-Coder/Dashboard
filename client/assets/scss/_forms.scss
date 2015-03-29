@@ -15,7 +15,7 @@
     line-height: 28px;
     height: 28px;
     outline: none;
-    @include box-shadow(none);
+    box-shadow: none;
   }
 
   .select2-container.select2-dropdown-open .select2-choice {

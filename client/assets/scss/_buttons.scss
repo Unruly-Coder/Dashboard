@@ -14,7 +14,7 @@
   text-decoration: none;
   color: #fff;
   cursor: pointer;
-  @include box-sizing('border-box');
+  @include vendor-prefix(box-sizing, border-box);
 
   &:hover {
     color: inherit;
@@ -36,12 +36,12 @@
     right: 0;
 
     &.frontside {
-      @include backface-visibility(hidden);
+      @include vendor-prefix(backface-visibility, hidden);
     }
 
     &.backside {
-      @include backface-visibility(hidden);
-      @include rotateY(180deg);
+      @include vendor-prefix(backface-visibility, hidden);
+      @include vendor-prefix(transform, rotateY(180deg));
     }
   }
 }

@@ -1,4 +1,4 @@
-angular.module('dashboard')
+angular.module('widget')
     .controller('weatherEditCtrl', ['$scope', '$collection', function($scope, $collection) {
 
         var cityCollection = $collection.getInstance(),

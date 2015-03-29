@@ -1,4 +1,4 @@
-angular.module('dashboard')
+angular.module('widget')
     .controller('smogAlertCtrl', ['$scope', function($scope){
 
         var chartData = [];

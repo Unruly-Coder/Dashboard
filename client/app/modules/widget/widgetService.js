@@ -1,4 +1,4 @@
-angular.module('dashboard')
+angular.module('widget')
     .provider('widgetService', function( ){
 
         var widgetList = [];
@@ -13,8 +13,8 @@ angular.module('dashboard')
                 angular.extend(widget.settings, {
                     col: 0,
                     row: 0,
-                    template: 'views/widgets/' + widget.settings.template,
-                    editTemplate: widget.settings.editTemplate ? 'views/widgets/' + widget.settings.editTemplate : undefined
+                    template: 'widgets/' + widget.settings.template,
+                    editTemplate: widget.settings.editTemplate ? 'widgets/' + widget.settings.editTemplate : undefined
                 });
 
                 widgetList.push(widget);
@@ -33,7 +33,7 @@ angular.module('dashboard')
                         angular.extend(widget, widgetData);
 
                         widget.getData = function() {
-                           var promise = $http.get(widget.dataBind.source);
+                            var promise = $http.get(widget.dataBind.source);
 
                             promise.then(function(response){
                                 widget.data = response.data;
@@ -84,24 +84,4 @@ angular.module('dashboard')
                 };
             }
         };
-    })
-    .factory('widgetManager', ['$http', 'socket', function($http, socket) {
-
-        var _widgetsInUse = [];
-
-        return {
-
-            getAllWidgets: function() {
-                return _widgetsInUse;
-            },
-
-            addWidget: function(widget) {
-                widget.getData();
-                _widgetsInUse.push(widget);
-            },
-
-            removeWidget: function(index) {
-                _widgetsInUse.splice(index, 1)[0].unbindData();
-            }
-        };
-    }]);
+    });

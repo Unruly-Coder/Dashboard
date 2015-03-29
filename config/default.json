@@ -20,9 +20,9 @@
     "services/webserver":{
         "views":"./views",
         "port":3000,
-        "favicon":"./client/public/favicon.ico",
+        "favicon":"./client/build/images/favicon.ico",
         "statics":[
-            "./client/public"
+            "./client/build"
         ]
     },
     "services/logger":{

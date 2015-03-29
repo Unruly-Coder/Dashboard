@@ -1,0 +1,5 @@
+<div ng-controller="DashboardCtrl" class="dashboard">
+        <widget-container serialize-changed="updateWidgets(data)">
+                <widget ng-repeat="widget in widgets" options="widget" remove-tile="remove($index)"></widget>
+        </widget-container>
+</div>

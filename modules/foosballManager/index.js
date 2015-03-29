@@ -10,6 +10,8 @@ module.exports = function setup(options, imports, register) {
     function init() {
         var socket = socketClient.connect(options.tableAddress);
 
+        updateDataChannel({});
+
         socket.on('foosballTableConnected', function(data) {
             logger.info('WebSocket connection with foosball table established');
 
