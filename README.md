@@ -4,7 +4,6 @@
 
 ## Install
 
----
 
 ### Download dependencies
 
@@ -24,7 +23,7 @@ $ npm run build
 $ npm start
 ```
 
-#### Watch .js and .sass files (development mode)
+### Watch .js and .sass files (development mode)
 
 ```bash
 $ npm run development
@@ -39,7 +38,7 @@ Bugs and Features
 
 If you found a bug or have a feature request, please create an issue here on GitHub.
 
-https://github.com/Crazy-Ivan/foosballTableApp/issues
+https://github.com/Crazy-Ivan/Dashboard/issues
 
 
 Author
