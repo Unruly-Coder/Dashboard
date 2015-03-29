@@ -3,13 +3,8 @@
   "version": "0.0.1",
   "description": "Server application for dashboard",
   "main": "app.js",
-  "config": {
-    "unsafe-perm": true
-  },
   "scripts": {
-    "start": "node app.js",
-    "install": "gulp && node app.js",
-    "test": "test",
+    "start": "nodejs app.js",
     "build": "gulp",
     "development": "gulp watch"
   },
