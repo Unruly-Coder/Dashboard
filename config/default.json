@@ -40,18 +40,11 @@
     "modules/birthday":{
         "url" : ""
     },
-    "modules/foosballManager":{
-        "tableAddress": "http://localhost:3001"
-    },
     "modules/rooms":{
 
     },
-    "modules/informant":{
-
-    },
-    "modules/routes/api":{
-
-    },
+    "modules/informant":{},
+    "modules/routes/api":{},
     "modules/routes/userImage": {
         "url" : ""
     },

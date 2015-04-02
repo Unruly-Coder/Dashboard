@@ -1,7 +1,0 @@
-<div class="weatherEdit" ng-controller="weatherEditCtrl">
-    <p>CHOOSE CITY</p>
-    <select ng-model="city" ui-select2="{ minimumResultsForSearch: 10 }">
-        <option ng-repeat="item in cities" value="{{item.url}}">{{item.city}}</option>
-    </select>
-    <button ng-click="save()">Save</button>
-</div>
