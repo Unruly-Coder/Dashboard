@@ -2,8 +2,8 @@
 
 - [node.js]
 
-## Install
-
+## Installation
+Copy or clone repository, install dependencies, build project and run server
 
 ### Download dependencies
 
@@ -30,6 +30,16 @@ $ npm run development
 ```
 
 ---
+
+## Development
+
+### Widgets - FE
+
+---
+
+### Modules - BE
+
+### Services - BE
 
 [node.js]:http://nodejs.org/
 
