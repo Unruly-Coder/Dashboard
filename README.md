@@ -6,6 +6,8 @@
 
 - [node.js]
 
+[node.js]:http://nodejs.org/
+
 ## Installation
 Copy or clone repository, install dependencies, build project and run server
 
@@ -51,25 +53,30 @@ Dashboard wouldn't be really useful without widgets. Lucky it is not really hard
 
 For each new widget we should create a directory in ```client/app/widgets```. There is no restriction to the name of the directory.
 It is a good practice if name corresponds somehow to the data that exposes.
-For example if our widget will show sale scores, we should name our directory ```'saleScoresWidget'``` :).
+For example if our widget will show sale scores, we should name our directory ```saleScoresWidget``` :).
 
 **Create a configuration file.**
 
+To inject our widget into the dashboard application we need to create a configuration file. Name of this file is not important, however it would be nice if will be the same as directory.
+
 Configurable options:
 
-+ ```sizex``` - required - The width of the widget in units
-+ ```sizey``` - required - The height of the widget in units
-+ ```template``` - required - The path to the front side template of widget
-+ ```editTemplate``` - optional - The path to the back side template of widget. If not provided, the widget will have only one side.
-+ ```color``` - optional - The color of the widget
-+ ```dataBind``` - optional - The data binding configuration.
++ ```sizex``` - **required** - The width of the widget in units
++ ```sizey``` - **required** - The height of the widget in units
++ ```template``` - **required** - The path to the front side template of widget
++ ```editTemplate``` - **optional** - The path to the back side template of widget. If not provided, the widget will have only one side.
++ ```color``` - **optional** - The color of the widget.
++ ```dataBind``` - **optional** - The data binding configuration.
 
 Data binding:
 
-+ ```type``` - required - As for now there are available two types of data binding. ```internal``` and ```external```.
-+ ```source``` - required - The url to json data (if 'type' equals to 'external') or path to an internal data channel (if 'type' equals to 'internal')
-+ ```interval``` - required only if ```type``` equals to ```external``` - The time interval (in milliseconds) after which data from an external server will be refreshed
++ ```type``` - **required** - As for now there are available two types of data binding. We could choose between 'internal' and 'external'.
++ ```source``` - **required** - The url to json data (if 'type' equals to 'external') or path to an internal data channel (if 'type' equals to 'internal')
++ ```interval``` - **required** only if ```type``` equals to ```external``` - The time interval (in milliseconds) after which data from an external server will be refreshed
 
+Data type explanation:
+
+[TODO]
 
 Example:
 
@@ -101,10 +108,9 @@ angular.module('widget')
 ---
 
 #### Modules - BE
-
+[TODO]
 #### Services - BE
-
-[node.js]:http://nodejs.org/
+[TODO]
 
 ---
 
