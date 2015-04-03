@@ -57,12 +57,19 @@ For example if our widget will show sale scores, we should name our directory ``
 
 Configurable options:
 
-+ ```sizex``` - required -
-+ ```sizey``` - required -
-+ ```template``` - required -
-+ ```editTemplate``` - optional -
-+ ```color``` - optional -
-+ ```dataBind``` - optional -
++ ```sizex``` - required - The width of the widget in units
++ ```sizey``` - required - The height of the widget in units
++ ```template``` - required - The path to the front side template of widget
++ ```editTemplate``` - optional - The path to the back side template of widget. If not provided, the widget will have only one side.
++ ```color``` - optional - The color of the widget
++ ```dataBind``` - optional - The data binding configuration.
+
+Data binding:
+
++ ```type``` - required - As for now there are available two types of data binding. ```internal``` and ```external```.
++ ```source``` - required - The url to json data (if 'type' equals to 'external') or path to an internal data channel (if 'type' equals to 'internal')
++ ```interval``` - required only if ```type``` equals to ```external``` - The time interval (in milliseconds) after which data from an external server will be refreshed
+
 
 Example:
 
