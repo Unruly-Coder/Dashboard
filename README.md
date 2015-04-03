@@ -1,3 +1,7 @@
+#Dashboard
+
+
+
 ## Requirements
 
 - [node.js]
@@ -34,6 +38,58 @@ $ npm run development
 ## Development
 
 #### Widgets - FE
+
+Dashboard wouldn't be really useful without widgets. Lucky it is not really hard to create one. We can create our widget by following a simple series of steps.
+
++ Create a directory for widget files.
++ Create a configuration file.
++ Create a html markup for the widget.
++ Create a controller file for business logic if needed.
++ Create a style file.
+
+**Create a directory for widget files.**
+
+For each new widget we should create a directory in ```client/app/widgets```. There is no restriction to the name of the directory.
+It is a good practice if name corresponds somehow to the data that exposes.
+For example if our widget will show sale scores, we should name our directory ```'saleScoresWidget'``` :).
+
+**Create a configuration file.**
+
+Configurable options:
+
++ ```sizex``` - required -
++ ```sizey``` - required -
++ ```template``` - required -
++ ```editTemplate``` - optional -
++ ```color``` - optional -
++ ```dataBind``` - optional -
+
+Example:
+
+```
+angular.module('widget')
+    .config(function(widgetServiceProvider) {
+        widgetServiceProvider.register('buildserver', {
+            sizex: 2,
+            sizey: 2,
+            color: '#63c3b5',
+            template: 'buildserver/buildserver.html',
+            editTemplate: 'buildserver/buildserverEdit.html',
+            dataBind: {
+                type: 'internal',
+                source: '/api/buildserver'
+            }
+        });
+    });
+```
+
+
+**Create a html markup for the widget.**
+
+**Create a controller file for business logic if needed.**
+
+**Create a style file.**
+
 
 ---
 
