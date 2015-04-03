@@ -5,25 +5,25 @@
 ## Installation
 Copy or clone repository, install dependencies, build project and run server
 
-### Download dependencies
+#### Download dependencies
 
 ```bash
 $ [sudo] npm install
 ```
 
-### Build project (compile js, css, copy views)
+#### Build project (compile js, css, copy views)
 
 ```bash
 $ npm run build
 ```
 
-### Run a server
+#### Run a server
 
 ```bash
 $ npm start
 ```
 
-### Watch .js and .sass files (development mode)
+#### Watch .js and .sass files (development mode)
 
 ```bash
 $ npm run development
@@ -33,15 +33,17 @@ $ npm run development
 
 ## Development
 
-### Widgets - FE
+#### Widgets - FE
 
 ---
 
-### Modules - BE
+#### Modules - BE
 
-### Services - BE
+#### Services - BE
 
 [node.js]:http://nodejs.org/
+
+---
 
 Bugs and Features
 -----------------
