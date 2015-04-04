@@ -1,9 +1,0 @@
-{
-    "name": "servicehub",
-    "version": "0.0.1",
-    "main": "index.js",
-    "private": true,
-    "plugin": {
-        "provides": ["servicehub"]
-    }
-}

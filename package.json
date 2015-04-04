@@ -24,14 +24,7 @@
     "config": "~0.4.35",
     "underscore": "^1.5.2",
     "winston": "^0.7.3",
-    "eventemitter2": "~0.4.13",
-    "mongoose": "~3.8.25",
-    "ntlm": "^0.1.1",
-    "request": "^2.34.0",
-    "agentkeepalive": "^0.2.2",
-    "q": "^1.0.1",
-    "cron": "^1.0.4",
-    "xml2js": "^0.4.2"
+    "eventemitter2": "~0.4.13"
   },
   "devDependencies": {
     "gulp": "~3.8.11",
