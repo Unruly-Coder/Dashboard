@@ -1,6 +1,7 @@
 #Dashboard
 
-
+Futures:
+--------
 
 ## Requirements
 
@@ -61,18 +62,22 @@ To inject our widget into the dashboard application we need to create a configur
 
 Configurable options:
 
-+ ```sizex``` - **required** - The width of the widget in units
-+ ```sizey``` - **required** - The height of the widget in units
-+ ```template``` - **required** - The path to the front side template of widget
-+ ```editTemplate``` - **optional** - The path to the back side template of widget. If not provided, the widget will have only one side.
-+ ```color``` - **optional** - The color of the widget.
-+ ```dataBind``` - **optional** - The data binding configuration.
+| key                | type    | required | description
+| ------------------ | ------- | -------- | -----------
+| ```sizex```        | integer | true     | The width of the widget in units
+| ```sizey```        | integer | true     | The height of the widget in units
+| ```template```     | string  | true     | The path to the front side template of widget
+| ```editTemplate``` | integer | false    | The path to the back side template of widget. If not provided, the widget will have only one side.
+| ```color```        | string  | false    | The color of the widget.
+| ```dataBind```     | object  | false    | The data binding configuration.
 
 Data binding:
 
-+ ```type``` - **required** - As for now there are available two types of data binding. We could choose between 'internal' and 'external'.
-+ ```source``` - **required** - The url to json data (if 'type' equals to 'external') or path to an internal data channel (if 'type' equals to 'internal')
-+ ```interval``` - **required** only if ```type``` equals to ```external``` - The time interval (in milliseconds) after which data from an external server will be refreshed
+| key                | type    | required    | description
+| ------------------ | ------- | ----------- | -----------
+| ```type```         | string  | true        | As for now there are available two types of data binding. We could choose between 'internal' and 'external'.
+| ```source```       | string  | true        | The url to json data (if 'type' equals to 'external') or path to an internal data channel (if 'type' equals to 'internal')
+| ```interval```     | integer | true/false  | **required** only if ```type``` equals to ```external``` - The time interval (in milliseconds) after which data from an external server will be refreshed
 
 Data type explanation:
 
@@ -80,7 +85,7 @@ Data type explanation:
 
 Example:
 
-```
+```JavaScript
 angular.module('widget')
     .config(function(widgetServiceProvider) {
         widgetServiceProvider.register('buildserver', {
