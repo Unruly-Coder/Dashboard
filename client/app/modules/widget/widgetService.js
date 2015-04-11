@@ -1,5 +1,5 @@
 angular.module('widget')
-    .provider('widgetService', function( ){
+    .provider('widgetService', function(){
 
         var widgetList = [];
 
@@ -7,80 +7,50 @@ angular.module('widget')
             register: function(name, widgetSettings) {
                 var widget = {
                     name: name,
-                    settings: widgetSettings
+                    options: widgetSettings
                 };
 
-                angular.extend(widget.settings, {
+                angular.extend(widget.options, {
                     col: 0,
                     row: 0,
-                    template: 'widgets/' + widget.settings.template,
-                    editTemplate: widget.settings.editTemplate ? 'widgets/' + widget.settings.editTemplate : undefined
+                    template: 'widgets/' + widget.options.template,
+                    editTemplate: widget.options.editTemplate ? 'widgets/' + widget.options.editTemplate : undefined
                 });
 
                 widgetList.push(widget);
             },
-            $get: function($http, socket, $q) {
+            $get: function(WidgetModel, InternalWidgetModel, ExternalWidgetModel) {
 
-                return {
-                    getWidgetList: function() {
-                        return widgetList;
-                    },
-                    createWidget: function(widgetData) {
-                        var bindReference, url, widget = {};
+                function getWidgetList() {
+                    return widgetList;
+                }
 
-                        widget.flip = false;
+                function createWidget(widgetData) {
+                    var widget;
 
-                        angular.extend(widget, widgetData);
-
-                        widget.getData = function() {
-                            var promise = $http.get(widget.dataBind.source);
-
-                            promise.then(function(response){
-                                widget.data = response.data;
-                            }, function() {
-                                console.error('can not connect with ' + url );
-                            });
-
-                            return promise;
-                        };
-
-                        switch(widget.dataBind.type) {
+                    if(widgetData.options.dataBind) {
+                        switch(widgetData.options.dataBind.type) {
                             case 'internal':
-
-                                bindReference = {
-                                    channel: widget.dataBind.source.substring(5),
-                                    fn: function(data) {
-                                        widget.data = data;
-                                    }
-                                };
-
-                                socket.on(bindReference.channel, bindReference.fn);
-
-                                widget.unbindData = function() {
-                                    socket.off(bindReference.channel, bindReference.fn);
-                                };
-
+                                widget = new InternalWidgetModel(widgetData);
                                 break;
-
                             case 'external':
-
-                                bindReference = setInterval(widget.getData, widget.dataBind.interval);
-
-                                widget.unbindData = function() {
-                                    clearInterval(bindReference);
-                                };
-
+                                widget = new ExternalWidgetModel(widgetData);
                                 break;
-
                             default:
-                                widget.unbindData = function(){};
+                                widget = new WidgetModel(widgetData);
                                 break;
                         }
-
-                        widget.getData();
-
-                        return widget;
+                    } else {
+                        widget = new WidgetModel(widgetData);
                     }
+
+                    return widget;
+                }
+
+
+                return {
+                    getWidgetList: getWidgetList,
+                    createWidget: createWidget
                 };
             }
         };

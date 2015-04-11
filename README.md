@@ -105,6 +105,52 @@ angular.module('widget')
 
 **Create a html markup for the widget.**
 
+The next step is creating a template file. The name of the file should corresponds to the name in the config file.
+Each widget inherits his object model, which is connected to the ```$scope.widget```.
+
+Widget model:
+
+```JavaScript
+widget: {
+    data: {}, // this object contains data from external or internal source
+    options: {  //widget definition data
+        sizex: 2,
+        sizey: 2,
+        color: '#63c3b5',
+        template: 'buildserver/buildserver.html',
+        editTemplate: 'buildserver/buildserverEdit.html',
+        dataBind: {
+            type: 'internal',
+            source: '/api/buildserver'
+        }
+    },
+    getData: function(){} //perform a asynchronous http request to the data source. Return a promise.
+    flip: function(){} //flip tile
+    bindDataSource: function(){} //binds data
+    unbindDataSource: function(){} //unbinds data
+}
+```
+
+
+Template example:
+
+```
+<div class="foosball-table">
+    <p class="state" ng-class="{occupied: widget.data.isOccupied}">
+        <span ng-show="widget.data.isOccupied">occupied</span>
+        <span ng-hide="widget.data.isOccupied">available</span>
+    </p>
+    <div class="small-points">
+        {{ widget.data.game.teamOne.smallPoints }} : {{ widget.data.game.teamTwo.smallPoints }}
+    </div>
+    <div class="big-points">
+        <p class="pull-left"> {{widget.data.game.teamOne.bigPoints}}</p>
+        <p class="pull-right"> {{widget.data.game.teamTwo.bigPoints}}</p>
+    </div>
+    <p class="footer">FOOSBALL TABLE</p>
+</div>
+```
+
 **Create a controller file for business logic if needed.**
 
 **Create a style file.**

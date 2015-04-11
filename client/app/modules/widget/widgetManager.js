@@ -1,5 +1,5 @@
 angular.module('widget')
-.factory('widgetManager', ['$http', 'socket', function($http, socket) {
+.factory('widgetManager', [function() {
 
     var _widgetsInUse = [];
 
@@ -15,7 +15,7 @@ angular.module('widget')
         },
 
         removeWidget: function(index) {
-            _widgetsInUse.splice(index, 1)[0].unbindData();
+            _widgetsInUse.splice(index, 1)[0].unbindDataSource();
         }
     };
 }]);

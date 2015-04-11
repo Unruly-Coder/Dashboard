@@ -16,14 +16,23 @@ angular.module('dashboard')
 
         function updateWidgets(data) {
             angular.forEach(data, function(value, key) {
-                this[key].col = value.col;
-                this[key].row = value.row;
+                this[key].options.col = value.col;
+                this[key].options.row = value.row;
             }, $scope.widgets);
             $scope.$digest();
         }
 
         function saveDashboardState() {
-            localStorage.widgets = angular.toJson($scope.widgets);
+            localStorage.widgets = prepareWidgetsToStore(widgetManager.getAllWidgets());
+        }
+
+        function prepareWidgetsToStore(data) {
+            data = angular.copy(data);
+            data.forEach(function(item){
+                item.data = undefined;
+            });
+
+            return angular.toJson(data);
         }
 
         function loadDashboardState() {
@@ -37,5 +46,4 @@ angular.module('dashboard')
                this.addWidget(widgetService.createWidget(value));
            }, widgetManager);
         }
-
     }]);

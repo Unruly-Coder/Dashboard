@@ -25,8 +25,8 @@ angular.module('widget').directive('widgetContainer', [
 
                     },
 
-                    addItem: function (elm, options)  {
-                        gr.add_widget(elm, options.sizex, options.sizey, options.col, options.row);
+                    addItem: function (elm, widget)  {
+                        gr.add_widget(elm, widget.options.sizex, widget.options.sizey, widget.options.col, widget.options.row);
                     },
 
                     removeItem: function (elm, index) {

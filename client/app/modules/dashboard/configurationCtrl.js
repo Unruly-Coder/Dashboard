@@ -4,7 +4,7 @@ angular.module('dashboard')
 
     $scope.widgets = widgetList;
     $scope.addWidget = function(index) {
-        var widget = widgetService.createWidget(widgetList[index].settings);
+        var widget = widgetService.createWidget(widgetList[index]);
         widgetManager.addWidget(widget);
     };
 }]);

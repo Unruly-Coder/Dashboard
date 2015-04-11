@@ -4,28 +4,28 @@ angular.module('widget').directive('widget', [
             restrict: 'E',
             require: '^widgetContainer',
             template: '<li class="card">' +
-            '<div class="cardContainer" ng-class="{flip : options.flip, active : options.editTemplate}">' +
+            '<div class="cardContainer" ng-class="{flip : widget.options.flip, active : widget.options.editTemplate}">' +
             '<a class="icon-close" ng-click="remove()"></a>' +
-            '<a class="settings-tile icon-menu2" ng-click="options.flip=!options.flip"></a>' +
-            '<a class="front-tile icon-undo2" ng-click="options.flip=!options.flip"></a>' +
-            '<div class="front" style="background-color: {{options.color}}">' +
-            '<div class="card_spinner spinner" ng-if="options.data == undefined"></div>' +
-            '<div class="content" ng-include="options.template" ng-if="options.data !== undefined"></div>' +
+            '<a class="settings-tile icon-menu2" ng-click="widget.options.flip=!widget.options.flip"></a>' +
+            '<a class="front-tile icon-undo2" ng-click="widget.options.flip=!widget.options.flip"></a>' +
+            '<div class="front" style="background-color: {{widget.options.color}}">' +
+            '<div class="card_spinner spinner" ng-if="widget.data == undefined"></div>' +
+            '<div class="content" ng-include="widget.options.template" ng-if="widget.data !== undefined"></div>' +
             '</div>' +
             '<div class="back">' +
-            '<div class="card_spinner spinner" ng-if="options.data == undefined"></div>' +
-            '<div class="content" ng-include="options.editTemplate" ng-if="options.data"></div>' +
+            '<div class="card_spinner spinner" ng-if="widget.data == undefined"></div>' +
+            '<div class="content" ng-include="widget.options.editTemplate" ng-if="widget.data"></div>' +
             '</div>' +
             '</div>' +
             '</li>',
             replace: true,
             scope: {
-                options: '=',
+                widget: '=options',
                 removeTile: '&'
             },
             link: function (scope, elm, attrs, controller) {
 
-                if(scope.options.color !== undefined && color2color(scope.options.color,'hsl').components.l > 50) {
+                if(scope.widget.color !== undefined && color2color(scope.widget.color,'hsl').components.l > 50) {
                     elm.addClass('light');
                 } else {
                     elm.addClass('dark');
@@ -35,12 +35,12 @@ angular.module('widget').directive('widget', [
                     controller.removeItem(elm);
                 };
 
-                elm.find(".front").css('background-color', scope.options.color);
+                elm.find(".front").css('background-color', scope.widget.color);
                 elm.bind('destroyTile', function() {
                     scope.removeTile();
                 });
 
-                controller.addItem(elm, scope.options);
+                controller.addItem(elm, scope.widget);
             }
         };
     }
