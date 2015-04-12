@@ -1,10 +1,5 @@
 angular.module('widget').factory('ExternalWidgetModel', ['$http', 'WidgetModel', function($http, WidgetModel) {
     function ExternalWidgetModel(settings){
-        this.options = {
-            dataBind: {
-                bindReference: {}
-            }
-        };
         WidgetModel.apply(this, arguments);
     }
 

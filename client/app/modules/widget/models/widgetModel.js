@@ -1,14 +1,12 @@
 angular.module('widget').factory('WidgetModel', ['$http', function($http) {
     function Widget(settings) {
-        this.options = {
+        this.data = undefined;
+        angular.extend(this, angular.copy(settings));
+        angular.extend(this.options, {
             col: 0,
             row: 0,
             flip: false
-        };
-
-        this.data = undefined;
-
-        angular.extend(this, angular.copy(settings));
+        });
 
         this.bindDataSource();
     }
