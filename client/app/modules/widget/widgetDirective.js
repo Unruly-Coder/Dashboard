@@ -25,7 +25,7 @@ angular.module('widget').directive('widget', [
             },
             link: function (scope, elm, attrs, controller) {
 
-                if(scope.widget.color !== undefined && color2color(scope.widget.color,'hsl').components.l > 50) {
+                if(scope.widget.options.color !== undefined && color2color(scope.widget.options.color,'hsl').components.l > 50) {
                     elm.addClass('light');
                 } else {
                     elm.addClass('dark');
@@ -35,7 +35,7 @@ angular.module('widget').directive('widget', [
                     controller.removeItem(elm);
                 };
 
-                elm.find(".front").css('background-color', scope.widget.color);
+                elm.find(".front").css('background-color', scope.widget.options.color);
                 elm.bind('destroyTile', function() {
                     scope.removeTile();
                 });
