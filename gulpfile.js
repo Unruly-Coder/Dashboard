@@ -56,8 +56,6 @@ function compileAppJs() {
     if(shouldCreateMapFile) {
         return es.merge(appJs(), appTemplate(), widgetTemplate())
             .pipe(sourceMaps.init())
-            .pipe(ngmin())
-            .pipe(uglify())
             .pipe(concat('app.min.js'))
             .pipe(sourceMaps.write())
             .pipe(gulp.dest('client/build/javascript/'));

@@ -7,7 +7,7 @@ angular.module('widget').factory('InternalWidgetModel', ['socket', 'WidgetModel'
         var self = this;
 
         this.options.dataBind.bindReference = {
-            chanel: this.options.dataBind.source.substring(5),
+            channel: this.options.dataBind.source.substring(5),
             fn: function(data) {
                 self.data = data;
             }

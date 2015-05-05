@@ -13,6 +13,7 @@ angular.module('widget')
                 angular.extend(widget.options, {
                     col: 0,
                     row: 0,
+                    flip: false,
                     template: 'widgets/' + widget.options.template,
                     editTemplate: widget.options.editTemplate ? 'widgets/' + widget.options.editTemplate : undefined
                 });
