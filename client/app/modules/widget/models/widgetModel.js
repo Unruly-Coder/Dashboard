@@ -12,8 +12,16 @@ angular.module('widget').factory('WidgetModel', ['$http', function($http) {
                 return;
             }
 
-            var promise = $http.get(this.options.dataBind.source),
-                self = this;
+            var self = this,
+                request = {
+                    url: self.options.dataBind.source,
+                    method: 'GET'
+                };
+
+            if (angular.isObject(this.options.dataBind.request)) {
+                request = angular.extend(request, angular.copy(this.options.dataBind.request))
+            }
+            var promise = $http(request);
 
             promise.then(function(response){
                 self.data = response.data;
