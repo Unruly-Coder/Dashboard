@@ -1,4 +1,4 @@
-angular.module('widget').factory('WidgetModel', ['$http', function($http) {
+angular.module('widget').factory('WidgetModel', ['$q', function($q) {
     function Widget(settings) {
         this.data = undefined;
         angular.extend(this, angular.copy(settings));
@@ -8,20 +8,12 @@ angular.module('widget').factory('WidgetModel', ['$http', function($http) {
     Widget.prototype = {
 
         getData: function() {
-            if(!this.options.dataBind) {
-                return;
-            }
+            var deferred = $q.defer();
 
-            var promise = $http.get(this.options.dataBind.source),
-                self = this;
+            this.data = {};
+            deferred.resolve();
 
-            promise.then(function(response){
-                self.data = response.data;
-            }, function() {
-                console.error('can not connect with ' + self.options.dataBind.source );
-            });
-
-            return promise;
+            return deferred.promise;
         },
         flip: function() {
             this.options.flip = !this.options.flip;
